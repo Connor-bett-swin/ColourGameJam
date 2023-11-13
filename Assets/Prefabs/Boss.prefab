@@ -88,7 +88,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 78699393498340f469de0b026f0f6b32, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -163,10 +163,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae70931e2affe2d4eac3826c85d6d22a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MaxSpeed: 8
-  m_MovementDamping: 0.1
-  m_JumpForce: 400
+  m_MoveSpeed: 8
+  m_MoveDamping: 0.05
+  m_JumpSpeed: 10
   m_CoyoteTime: 0.3
+  m_SquishDamping: 0.1
+  m_SquishIntensity: 0.2
+  m_SquishFromVelocity: 0.1
   m_SpriteRenderer: {fileID: 7617254073538932622}
   m_Animator: {fileID: 2759712367722443660}
 --- !u!1 &3637090129502468315

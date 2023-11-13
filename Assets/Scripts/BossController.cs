@@ -7,11 +7,11 @@ using UnityEngine.InputSystem;
 public class BossController : MonoBehaviour
 {
 	[SerializeField]
-	private float m_MaxSpeed = 8;
+	private float m_MoveSpeed = 8;
 	[SerializeField]
-	private float m_MovementDamping = 0.1f;
+	private float m_MoveDamping = 0.05f;
 	[SerializeField]
-	private float m_JumpForce = 400;
+	private float m_JumpSpeed = 10;
 	[SerializeField]
 	private float m_CoyoteTime = 0.3f;
 	[SerializeField]
@@ -45,7 +45,7 @@ public class BossController : MonoBehaviour
 	private void FixedUpdate()
 	{
 		var contactFilter = new ContactFilter2D();
-		contactFilter.SetNormalAngle(1, 179);
+		contactFilter.SetNormalAngle(5, 175);
 
 		m_Grounded = m_Rigidbody.GetContacts(contactFilter, m_Contacts) > 0;
 	}
@@ -54,8 +54,8 @@ public class BossController : MonoBehaviour
 	{
 		var moveInput = m_MoveAction.ReadValue<Vector2>().x;
 
-		var targetVelocity = new Vector2(moveInput * m_MaxSpeed, m_Rigidbody.velocity.y);
-		m_Rigidbody.velocity = Vector2.SmoothDamp(m_Rigidbody.velocity, targetVelocity, ref m_Velocity, m_MovementDamping);
+		var targetVelocity = new Vector2(moveInput * m_MoveSpeed, m_Rigidbody.velocity.y);
+		m_Rigidbody.velocity = Vector2.SmoothDamp(m_Rigidbody.velocity, targetVelocity, ref m_Velocity, m_MoveDamping);
 
 		var targetSquish = math.tanh(m_Rigidbody.velocity.y * m_SquishFromVelocity);
 		m_Squish = Mathf.SmoothDamp(m_Squish, targetSquish, ref m_SquishVelocity, m_SquishDamping);
@@ -86,7 +86,7 @@ public class BossController : MonoBehaviour
 		if (m_Grounded || m_AirTime < m_CoyoteTime)
 		{
 			m_Grounded = false;
-			m_Rigidbody.AddForce(new Vector2(0, m_JumpForce));
+			m_Rigidbody.velocity = new Vector2(m_Rigidbody.velocity.x, m_JumpSpeed);
 		}
 	}
 }
