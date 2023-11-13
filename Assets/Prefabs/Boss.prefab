@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8988149007355639900}
   - component: {fileID: 2134164432007937801}
   - component: {fileID: 2759712367722443660}
+  - component: {fileID: 8783779791646765224}
   - component: {fileID: 7935907700804894851}
   m_Layer: 0
   m_Name: Boss
@@ -131,7 +132,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353051820032121563}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -149,7 +150,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &2759712367722443660
 Animator:
   serializedVersion: 5
@@ -171,6 +172,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8783779791646765224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353051820032121563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: d72d6461d0e06fc4a9bfb00ad1ac87f6,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!114 &7935907700804894851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,3 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae70931e2affe2d4eac3826c85d6d22a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_MaxSpeed: 8
+  m_MovementDamping: 0.1
+  m_JumpForce: 400
+  m_CoyoteTime: 0.3
