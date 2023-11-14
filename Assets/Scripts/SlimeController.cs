@@ -40,7 +40,7 @@ public class SlimeController : MonoBehaviour
 			sprite.flipX = m_FacingRight;
 		}
 
-		if (!Physics2D.Raycast((Vector2)transform.position + MoveDirection * 0.2f, Vector2.down, 1.5f, LayerMask.GetMask("Default")))
+		if (!Physics2D.Raycast((Vector2)transform.position + MoveDirection * 0.2f, Vector2.down, 1.5f, LayerMask.GetMask("Default", "Platform")))
 		{
 			m_FacingRight = !m_FacingRight;
 		}
