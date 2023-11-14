@@ -6,15 +6,17 @@ using UnityEngine.InputSystem;
 public class ArrowRainSequence : MonoBehaviour
 {
 	[SerializeField]
-	private float m_FireArrowsDelay;
+	private float m_FireArrowsDelay = 1.5f;
 	[SerializeField]
-	private float m_ArrowDensity;
+	private float m_ArrowDensity = 0.5f;
+	[SerializeField]
+	private float m_ShadowArrowScale = 0.5f;
 	[SerializeField]
 	private float m_Width;
 	[SerializeField]
 	private float m_Ground;
 	[SerializeField]
-	private float m_GapWidth;
+	private float m_GapWidth = 5;
 	[SerializeField]
 	private GameObject m_ShadowArrowPrefab;
 	[SerializeField]
@@ -51,7 +53,7 @@ public class ArrowRainSequence : MonoBehaviour
 			}
 
 			var shadowArrow = Instantiate(m_ShadowArrowPrefab, shadowArrows.transform);
-			shadowArrow.transform.localPosition = new Vector3((x - m_Width / 2) * 0.5f, 0);
+			shadowArrow.transform.localPosition = new Vector3((x - m_Width / 2) * m_ShadowArrowScale, 0);
 		}
 
 		LeanTween.alpha(shadowArrows, 1, 0.25f).setFrom(0);
@@ -71,7 +73,8 @@ public class ArrowRainSequence : MonoBehaviour
 			}
 
 			var arrow = Instantiate(m_ArrowPrefab);
-			arrow.transform.position = new Vector3(transform.position.x + x - m_Width / 2 + Random.Range(-0.5f, 0.5f), transform.position.y);
+			arrow.transform.position = new Vector3(transform.position.x + x - m_Width / 2 + Random.Range(-0.5f, 0.5f),
+				transform.position.y + Random.Range(-0.5f, 0.5f));
 		}
 	}
 
@@ -81,6 +84,7 @@ public class ArrowRainSequence : MonoBehaviour
 		Gizmos.DrawLine(transform.position - new Vector3(m_Width / 2, 0), transform.position + new Vector3(m_Width / 2, 0));
 
 		Gizmos.color = Color.blue;
-		Gizmos.DrawLine(transform.position + new Vector3(-m_Width / 2, -m_Ground), transform.position + new Vector3(m_Width / 2, -m_Ground));
+		Gizmos.DrawLine(transform.position + new Vector3(m_ShadowArrowScale * -m_Width / 2, -m_Ground),
+			transform.position + new Vector3(m_ShadowArrowScale * m_Width / 2, -m_Ground));
 	}
 }

@@ -1660,6 +1660,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FireArrowsDelay: 1.5
   m_ArrowDensity: 0.5
+  m_ShadowArrowScale: 0.5
   m_Width: 28
   m_Ground: 28
   m_GapWidth: 5
