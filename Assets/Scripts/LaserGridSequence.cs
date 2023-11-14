@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class LaserGridSequence : MonoBehaviour
 {
@@ -20,7 +21,14 @@ public class LaserGridSequence : MonoBehaviour
 
 	public void Activate()
 	{
-		Sweep(Random.value > 0.5f, Random.value > 0.5f);
+		if (Random.value > 0.2f)
+		{
+			Sweep(Random.value > 0.5f, Random.value > 0.5f);
+		}
+		else
+		{
+			Spin();
+		}
 	}
 
 	private void Sweep(bool horizontal, bool top)
@@ -39,6 +47,22 @@ public class LaserGridSequence : MonoBehaviour
 		sequence.append(() => laser.Activated = true);
 		sequence.append(1);
 		sequence.append(LeanTween.move(laser.gameObject, finalPosition, 4));
+		sequence.append(1);
+		sequence.append(() => laser.Activated = false);
+		sequence.append(LeanTween.alpha(laser.gameObject, 0, 0.5f).setDestroyOnComplete(true));
+	}
+
+	private void Spin()
+	{
+		var laser = Instantiate(m_LaserPrefab).GetComponent<Laser>();
+		laser.Separation = Mathf.Min(m_Size.x, m_Size.y) / 2;
+
+		var sequence = LeanTween.sequence();
+		sequence.append(LeanTween.alpha(laser.gameObject, 1, 0.5f).setFrom(0));
+		sequence.append(0.5f);
+		sequence.append(() => laser.Activated = true);
+		sequence.append(1);
+		sequence.append(LeanTween.rotate(laser.gameObject, new Vector3(0, 0, 360 * 2), 5));
 		sequence.append(1);
 		sequence.append(() => laser.Activated = false);
 		sequence.append(LeanTween.alpha(laser.gameObject, 0, 0.5f).setDestroyOnComplete(true));
