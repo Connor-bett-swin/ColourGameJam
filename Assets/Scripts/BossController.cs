@@ -44,7 +44,7 @@ public class BossController : MonoBehaviour
 
 		m_MoveAction = m_PlayerInput.actions["Move"];
 
-		m_BodySprite.color = UnityEngine.Random.ColorHSV();
+		m_BodySprite.color = UnityEngine.Random.ColorHSV(0, 1, 1, 1, 1, 1);
 	}
 
 	private void FixedUpdate()
