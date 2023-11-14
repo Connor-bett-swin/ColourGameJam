@@ -6,10 +6,16 @@ public class SlimeController : MonoBehaviour
 {
 	[SerializeField]
 	private float m_MoveSpeed = 3;
+	[SerializeField]
+	private SpriteRenderer m_BodySprite;
+	[SerializeField]
+	private ColorScheme m_Colors;
 	private SpriteRenderer[] m_Sprites;
     private Rigidbody2D m_Rigidbody;
 	private bool m_FacingRight;
-	
+
+	public int ColorIndex;
+
 	public Vector2 MoveDirection => m_FacingRight ? Vector2.right : Vector2.left;
 
 	private void Awake()
@@ -21,6 +27,8 @@ public class SlimeController : MonoBehaviour
 	private void Start()
 	{
 		m_FacingRight = Random.value > 0.5f;
+
+		m_BodySprite.color = m_Colors[ColorIndex];
 	}
 
 	private void Update()

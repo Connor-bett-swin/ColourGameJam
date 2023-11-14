@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class BossController : MonoBehaviour
 {
 	[SerializeField]
-	private Color[] m_Colors;
+	private ColorScheme m_Colors;
 	[SerializeField]
 	private float m_MoveSpeed = 8;
 	[SerializeField]
@@ -104,11 +104,20 @@ public class BossController : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.gameObject.CompareTag("Slime"))
+		if (!collision.gameObject.CompareTag("Slime"))
 		{
-			Destroy(collision.gameObject);
-
-			transform.localScale += new Vector3(0.2f, 0.2f, 0);
+			return;
 		}
+
+		var smileController = collision.gameObject.GetComponent<SlimeController>();
+
+		if (smileController.ColorIndex != m_ColorIndex)
+		{
+			return;
+		}
+
+		Destroy(collision.gameObject);
+
+		transform.localScale += new Vector3(0.2f, 0.2f, 0);
 	}
 }
