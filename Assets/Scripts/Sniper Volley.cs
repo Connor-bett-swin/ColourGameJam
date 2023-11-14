@@ -20,6 +20,14 @@ public class ArrowShooter : MonoBehaviour
         StartCoroutine(ShootAtPlayer());
     }
 
+	private void Update()
+	{
+		if (Keyboard.current.digit2Key.wasPressedThisFrame)
+		{
+			StartCoroutine(ShootAtPlayer());
+		}
+	}
+
     private IEnumerator ShootAtPlayer()
     {
         Vector2 targetPosition = player.transform.position;
