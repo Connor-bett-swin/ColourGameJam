@@ -27,6 +27,7 @@ public class LaserGridSequence : MonoBehaviour
 	{
 		var laser = Instantiate(m_LaserPrefab).GetComponent<Laser>();
 		laser.transform.position = (horizontal ? new Vector2(0, m_Size.y) : new Vector2(m_Size.x, 0)) / 2;
+		laser.transform.position *= top ? 1 : -1;
 		laser.transform.eulerAngles = new Vector3(0, 0, horizontal ? 0 : 90);
 		laser.Separation = (horizontal ? m_Size.x : m_Size.y) / 2;
 
