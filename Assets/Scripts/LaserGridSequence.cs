@@ -27,7 +27,7 @@ public class LaserGridSequence : MonoBehaviour
 		}
 		else
 		{
-			Spin();
+			Spin(2, 5, 5);
 		}
 	}
 
@@ -46,15 +46,18 @@ public class LaserGridSequence : MonoBehaviour
 		sequence.append(0.5f);
 		sequence.append(() => laser.Activated = true);
 		sequence.append(1);
+
 		sequence.append(LeanTween.move(laser.gameObject, finalPosition, 4).setEaseInOutQuad());
+
 		sequence.append(0.5f);
 		sequence.append(() => laser.Activated = false);
 		sequence.append(LeanTween.alpha(laser.gameObject, 0, 0.5f).setDestroyOnComplete(true));
 	}
 
-	private void Spin()
+	private void Spin(int spins, float duration, float offset)
 	{
 		var laser = Instantiate(m_LaserPrefab).GetComponent<Laser>();
+		//laser.transform.position = new Vector3(-offset, 0, 0);
 		laser.Separation = Mathf.Min(m_Size.x, m_Size.y) / 2;
 
 		var sequence = LeanTween.sequence();
@@ -62,7 +65,15 @@ public class LaserGridSequence : MonoBehaviour
 		sequence.append(0.5f);
 		sequence.append(() => laser.Activated = true);
 		sequence.append(1);
-		sequence.append(LeanTween.rotate(laser.gameObject, new Vector3(0, 0, 360 * 2), 5).setEaseInOutQuad());
+
+		sequence.append(LeanTween.rotate(laser.gameObject, new Vector3(0, 0, 360 * spins), duration).setEaseInOutQuad());
+		//sequence.append(() =>
+		//{
+		//	LeanTween.rotate(laser.gameObject, new Vector3(0, 0, 360 * spins), duration).setEaseInOutQuad();
+		//	LeanTween.moveX(laser.gameObject, offset, duration / spins).setEaseInOutQuad().setLoopPingPong(spins / 2);
+		//});
+		//sequence.append(duration);
+
 		sequence.append(0.5f);
 		sequence.append(() => laser.Activated = false);
 		sequence.append(LeanTween.alpha(laser.gameObject, 0, 0.5f).setDestroyOnComplete(true));
