@@ -1629,6 +1629,59 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c259b85cd9f02b46b032554467c70c2, type: 3}
+--- !u!1 &2112160244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2112160246}
+  - component: {fileID: 2112160245}
+  m_Layer: 0
+  m_Name: ArrowRain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2112160245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112160244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46450155bb2404b4c91b6f328a1a93c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FireArrowsDelay: 1.5
+  m_ArrowDensity: 0.5
+  m_Width: 30
+  m_Ground: 28
+  m_GapWidth: 5
+  m_ShadowArrowPrefab: {fileID: 7845174230646450611, guid: 5965c2f3c8d529a48aad3ef3ff489b04,
+    type: 3}
+  m_ArrowPrefab: {fileID: 7845174230646450611, guid: 86e7ffdddd89ae24b9fbd8e245844460,
+    type: 3}
+--- !u!4 &2112160246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112160244}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.51, y: 20.56, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2123713776
 GameObject:
   m_ObjectHideFlags: 0
@@ -1887,3 +1940,4 @@ SceneRoots:
   - {fileID: 815149223}
   - {fileID: 1941410302}
   - {fileID: 1060265797}
+  - {fileID: 2112160246}
