@@ -28,6 +28,7 @@ public class SlimeController : MonoBehaviour
 	{
 		m_FacingRight = Random.value > 0.5f;
 
+		ColorIndex = Random.Range(0, m_Colors.Length);
 		m_BodySprite.color = m_Colors[ColorIndex];
 	}
 
