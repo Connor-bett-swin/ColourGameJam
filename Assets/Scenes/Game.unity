@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 185908109}
   - component: {fileID: 185908108}
   - component: {fileID: 185908107}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ PlatformEffector2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 185908106}
   m_Enabled: 1
-  m_UseColliderMask: 1
+  m_UseColliderMask: 0
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -918,7 +918,7 @@ GameObject:
   - component: {fileID: 931216227}
   - component: {fileID: 931216228}
   - component: {fileID: 931216225}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -933,7 +933,7 @@ PlatformEffector2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 931216224}
   m_Enabled: 1
-  m_UseColliderMask: 1
+  m_UseColliderMask: 0
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1015,7 +1015,7 @@ GameObject:
   - component: {fileID: 1052275867}
   - component: {fileID: 1052275868}
   - component: {fileID: 1052275869}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1096,7 +1096,7 @@ PlatformEffector2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1052275863}
   m_Enabled: 1
-  m_UseColliderMask: 1
+  m_UseColliderMask: 0
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1331,7 +1331,7 @@ GameObject:
   - component: {fileID: 1417225193}
   - component: {fileID: 1417225194}
   - component: {fileID: 1417225195}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1414,7 +1414,7 @@ PlatformEffector2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417225189}
   m_Enabled: 1
-  m_UseColliderMask: 1
+  m_UseColliderMask: 0
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1640,7 +1640,7 @@ GameObject:
   - component: {fileID: 2123713778}
   - component: {fileID: 2123713779}
   - component: {fileID: 2123713780}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1715,7 +1715,7 @@ PlatformEffector2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2123713776}
   m_Enabled: 1
-  m_UseColliderMask: 1
+  m_UseColliderMask: 0
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295

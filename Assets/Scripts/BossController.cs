@@ -60,9 +60,9 @@ public class BossController : MonoBehaviour
 
 	private void Update()
 	{
-		var moveInput = m_MoveAction.ReadValue<Vector2>().x;
+		var moveInput = m_MoveAction.ReadValue<Vector2>();
 
-		var targetVelocity = new Vector2(moveInput * m_MoveSpeed, m_Rigidbody.velocity.y);
+		var targetVelocity = new Vector2(moveInput.x * m_MoveSpeed, m_Rigidbody.velocity.y);
 		m_Rigidbody.velocity = Vector2.SmoothDamp(m_Rigidbody.velocity, targetVelocity, ref m_Velocity, m_MoveDamping);
 
 		var targetSquish = math.tanh(m_Rigidbody.velocity.y * m_SquishFromVelocity);
@@ -72,9 +72,9 @@ public class BossController : MonoBehaviour
 
 		m_Sprites.transform.localScale = new Vector3(m_Sprites.transform.localScale.x * (m_FacingRight ? -1 : 1), m_Sprites.transform.localScale.y, 1);
 
-		if (Mathf.Abs(moveInput) > 0.1f)
+		if (Mathf.Abs(moveInput.x) > 0.1f)
 		{
-			m_FacingRight = moveInput > 0;
+			m_FacingRight = moveInput.x > 0;
 		}
 
 		if (m_Grounded)
@@ -85,6 +85,8 @@ public class BossController : MonoBehaviour
 		{
 			m_AirTime += Time.deltaTime;
 		}
+
+		Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Boss"), LayerMask.NameToLayer("Platform"), moveInput.y < 0);
 	}
 
 	private void OnJump()
