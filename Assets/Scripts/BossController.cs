@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 public class BossController : MonoBehaviour
 {
 	[SerializeField]
+	private Color[] m_Colors;
+	[SerializeField]
 	private float m_MoveSpeed = 8;
 	[SerializeField]
 	private float m_MoveDamping = 0.05f;
@@ -26,6 +28,7 @@ public class BossController : MonoBehaviour
 	private SpriteRenderer m_BodySprite;
 	[SerializeField]
 	private Animator m_Animator;
+	private int m_ColorIndex;
 	private float m_Squish;
 	private float m_SquishVelocity;
 	private bool m_FacingRight;
@@ -44,7 +47,7 @@ public class BossController : MonoBehaviour
 
 		m_MoveAction = m_PlayerInput.actions["Move"];
 
-		m_BodySprite.color = UnityEngine.Random.ColorHSV(0, 1, 1, 1, 1, 1);
+		m_BodySprite.color = m_Colors[m_ColorIndex];
 	}
 
 	private void FixedUpdate()
@@ -91,6 +94,12 @@ public class BossController : MonoBehaviour
 			m_Grounded = false;
 			m_Rigidbody.velocity = new Vector2(m_Rigidbody.velocity.x, m_JumpSpeed);
 		}
+	}
+
+	private void OnChangeColor()
+	{
+		m_ColorIndex = (m_ColorIndex + 1) % m_Colors.Length;
+		m_BodySprite.color = m_Colors[m_ColorIndex];
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)

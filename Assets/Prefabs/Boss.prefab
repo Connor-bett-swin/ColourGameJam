@@ -163,6 +163,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae70931e2affe2d4eac3826c85d6d22a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Colors:
+  - {r: 0.38314345, g: 0.7735849, b: 0.46799994, a: 1}
+  - {r: 0.29196337, g: 0.4429349, b: 0.764151, a: 1}
+  - {r: 0.7735849, g: 0.3247597, b: 0.4017012, a: 1}
   m_MoveSpeed: 8
   m_MoveDamping: 0.05
   m_JumpSpeed: 10
