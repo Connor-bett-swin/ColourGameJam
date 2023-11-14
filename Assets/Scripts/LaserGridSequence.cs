@@ -46,8 +46,8 @@ public class LaserGridSequence : MonoBehaviour
 		sequence.append(0.5f);
 		sequence.append(() => laser.Activated = true);
 		sequence.append(1);
-		sequence.append(LeanTween.move(laser.gameObject, finalPosition, 4));
-		sequence.append(1);
+		sequence.append(LeanTween.move(laser.gameObject, finalPosition, 4).setEaseInOutQuad());
+		sequence.append(0.5f);
 		sequence.append(() => laser.Activated = false);
 		sequence.append(LeanTween.alpha(laser.gameObject, 0, 0.5f).setDestroyOnComplete(true));
 	}
@@ -62,8 +62,8 @@ public class LaserGridSequence : MonoBehaviour
 		sequence.append(0.5f);
 		sequence.append(() => laser.Activated = true);
 		sequence.append(1);
-		sequence.append(LeanTween.rotate(laser.gameObject, new Vector3(0, 0, 360 * 2), 5));
-		sequence.append(1);
+		sequence.append(LeanTween.rotate(laser.gameObject, new Vector3(0, 0, 360 * 2), 5).setEaseInOutQuad());
+		sequence.append(0.5f);
 		sequence.append(() => laser.Activated = false);
 		sequence.append(LeanTween.alpha(laser.gameObject, 0, 0.5f).setDestroyOnComplete(true));
 	}
