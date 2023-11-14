@@ -164,9 +164,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Colors: {fileID: 11400000, guid: e48cee524cae42a46bcf9736c67e4ff9, type: 2}
-  m_MoveSpeed: 8
+  m_MoveSpeed: 10
   m_MoveDamping: 0.05
-  m_JumpSpeed: 10
+  m_JumpSpeed: 15
   m_CoyoteTime: 0.3
   m_SquishDamping: 0.1
   m_SquishIntensity: 0.2

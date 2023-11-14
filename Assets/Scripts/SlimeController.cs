@@ -45,4 +45,12 @@ public class SlimeController : MonoBehaviour
 			m_FacingRight = !m_FacingRight;
 		}
 	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.contactCount > 0 && Vector3.Dot(collision.contacts[0].normal, MoveDirection) < -0.8f)
+		{
+			m_FacingRight = !m_FacingRight;
+		}
+	}
 }
