@@ -8,7 +8,7 @@ public class SlimeController : MonoBehaviour
 	private float m_MoveSpeed = 3;
 	private SpriteRenderer[] m_Sprites;
     private Rigidbody2D m_Rigidbody;
-	private bool m_FacingRight = Random.value > 0.5f;
+	private bool m_FacingRight;
 	
 	public Vector2 MoveDirection => m_FacingRight ? Vector2.right : Vector2.left;
 
@@ -16,6 +16,11 @@ public class SlimeController : MonoBehaviour
 	{
 		m_Rigidbody = GetComponent<Rigidbody2D>();
 		m_Sprites = GetComponentsInChildren<SpriteRenderer>();
+	}
+
+	private void Start()
+	{
+		m_FacingRight = Random.value > 0.5f;
 	}
 
 	private void Update()
