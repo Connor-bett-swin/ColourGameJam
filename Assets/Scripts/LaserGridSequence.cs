@@ -6,6 +6,14 @@ using UnityEngine.InputSystem;
 public class LaserGridSequence : MonoBehaviour
 {
 	[SerializeField]
+	private float m_SpinChance = 0.2f;
+	[SerializeField]
+	private int m_MinSpins = 2;
+	[SerializeField]
+	private int m_MaxSpins = 2;
+	[SerializeField]
+	private float m_SpinTime = 2.5f;
+	[SerializeField]
 	private Vector2 m_Size;
 	[SerializeField]
 	private GameObject m_LaserPrefab;
@@ -20,13 +28,13 @@ public class LaserGridSequence : MonoBehaviour
 
 	public void Activate()
 	{
-		if (Random.value > 0.2f)
+		if (Random.value > m_SpinChance)
 		{
 			Sweep(Random.value > 0.5f, Random.value > 0.5f);
 		}
 		else
 		{
-			Spin(2, 5, 5);
+			Spin(Random.Range(m_MinSpins, m_MaxSpins), m_SpinTime);
 		}
 	}
 
@@ -53,10 +61,9 @@ public class LaserGridSequence : MonoBehaviour
 		sequence.append(LeanTween.alpha(laser.gameObject, 0, 0.5f).setDestroyOnComplete(true));
 	}
 
-	private void Spin(int spins, float duration, float offset)
+	private void Spin(int spins, float revolutionTime)
 	{
 		var laser = Instantiate(m_LaserPrefab).GetComponent<Laser>();
-		//laser.transform.position = new Vector3(-offset, 0, 0);
 		laser.Separation = Mathf.Min(m_Size.x, m_Size.y) / 2;
 
 		var sequence = LeanTween.sequence();
@@ -65,13 +72,7 @@ public class LaserGridSequence : MonoBehaviour
 		sequence.append(() => laser.Activated = true);
 		sequence.append(1);
 
-		sequence.append(LeanTween.rotate(laser.gameObject, new Vector3(0, 0, 360 * spins), duration).setEaseInOutQuad());
-		//sequence.append(() =>
-		//{
-		//	LeanTween.rotate(laser.gameObject, new Vector3(0, 0, 360 * spins), duration).setEaseInOutQuad();
-		//	LeanTween.moveX(laser.gameObject, offset, duration / spins).setEaseInOutQuad().setLoopPingPong(spins / 2);
-		//});
-		//sequence.append(duration);
+		sequence.append(LeanTween.rotate(laser.gameObject, new Vector3(0, 0, 360 * spins), spins * revolutionTime).setEaseInOutQuad());
 
 		sequence.append(0.5f);
 		sequence.append(() => laser.Activated = false);
