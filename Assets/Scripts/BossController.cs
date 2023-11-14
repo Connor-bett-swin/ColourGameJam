@@ -92,4 +92,14 @@ public class BossController : MonoBehaviour
 			m_Rigidbody.velocity = new Vector2(m_Rigidbody.velocity.x, m_JumpSpeed);
 		}
 	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.CompareTag("Slime"))
+		{
+			Destroy(collision.gameObject);
+
+			transform.localScale += new Vector3(0.2f, 0.2f, 0);
+		}
+	}
 }
