@@ -17,12 +17,11 @@ public class ArrowShooter : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        StartCoroutine(ShootAtPlayer());
     }
 
 	private void Update()
 	{
-		if (Keyboard.current.digit2Key.wasPressedThisFrame)
+		if (Keyboard.current.digit3Key.wasPressedThisFrame)
 		{
 			StartCoroutine(ShootAtPlayer());
 		}
