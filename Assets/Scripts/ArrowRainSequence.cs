@@ -26,11 +26,11 @@ public class ArrowRainSequence : MonoBehaviour
 	{
 		if (Keyboard.current.digit1Key.wasPressedThisFrame)
 		{
-			Fire();
+			Activate();
 		}
 	}
 
-	private void Fire()
+	public void Activate()
 	{
 		var gapX = Random.Range(0, m_Width - m_GapWidth);
 
