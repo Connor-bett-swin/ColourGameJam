@@ -20,7 +20,27 @@ public class LaserGridSequence : MonoBehaviour
 
 	public void Activate()
 	{
+		Sweep(Random.value > 0.5f, Random.value > 0.5f);
+	}
 
+	private void Sweep(bool horizontal, bool top)
+	{
+		var laser = Instantiate(m_LaserPrefab).GetComponent<Laser>();
+		laser.transform.position = (horizontal ? new Vector2(0, m_Size.y) : new Vector2(m_Size.x, 0)) / 2;
+		laser.transform.eulerAngles = new Vector3(0, 0, horizontal ? 0 : 90);
+		laser.Separation = (horizontal ? m_Size.x : m_Size.y) / 2;
+
+		var finalPosition = -laser.transform.position;
+
+		var sequence = LeanTween.sequence();
+		sequence.append(LeanTween.alpha(laser.gameObject, 1, 0.5f).setFrom(0));
+		sequence.append(0.5f);
+		sequence.append(() => laser.Activated = true);
+		sequence.append(1);
+		sequence.append(LeanTween.move(laser.gameObject, finalPosition, 4));
+		sequence.append(1);
+		sequence.append(() => laser.Activated = false);
+		sequence.append(LeanTween.alpha(laser.gameObject, 0, 0.5f).setDestroyOnComplete(true));
 	}
 
 	private void OnDrawGizmosSelected()
