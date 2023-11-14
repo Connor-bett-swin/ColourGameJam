@@ -21,12 +21,15 @@ public class BossController : MonoBehaviour
 	[SerializeField]
 	private float m_SquishFromVelocity = 0.1f;
 	[SerializeField]
-	private SpriteRenderer m_SpriteRenderer;
+	private GameObject m_Sprites;
+	[SerializeField]
+	private SpriteRenderer m_BodySprite;
 	[SerializeField]
 	private Animator m_Animator;
 	private float m_Squish;
 	private float m_SquishVelocity;
-	private bool m_Grounded = true;
+	private bool m_FacingRight;
+	private bool m_Grounded;
 	private float m_AirTime;
 	private Vector2 m_Velocity;
 	private ContactPoint2D[] m_Contacts = new ContactPoint2D[8];
@@ -40,6 +43,8 @@ public class BossController : MonoBehaviour
 		m_PlayerInput = GetComponent<PlayerInput>();
 
 		m_MoveAction = m_PlayerInput.actions["Move"];
+
+		m_BodySprite.color = UnityEngine.Random.ColorHSV();
 	}
 
 	private void FixedUpdate()
@@ -59,16 +64,14 @@ public class BossController : MonoBehaviour
 
 		var targetSquish = math.tanh(m_Rigidbody.velocity.y * m_SquishFromVelocity);
 		m_Squish = Mathf.SmoothDamp(m_Squish, targetSquish, ref m_SquishVelocity, m_SquishDamping);
-		m_SpriteRenderer.transform.localScale = new Vector3(Mathf.LerpUnclamped(1, 1 + m_SquishIntensity, m_Squish),
+		m_Sprites.transform.localScale = new Vector3(Mathf.LerpUnclamped(1, 1 + m_SquishIntensity, m_Squish),
 			Mathf.LerpUnclamped(1, 1 - m_SquishIntensity, m_Squish), 1);
 
-		if (moveInput > 0.1f)
+		m_Sprites.transform.localScale = new Vector3(m_Sprites.transform.localScale.x * (m_FacingRight ? -1 : 1), m_Sprites.transform.localScale.y, 1);
+
+		if (Mathf.Abs(moveInput) > 0.1f)
 		{
-			m_SpriteRenderer.flipX = true;
-		}
-		else if (moveInput < -0.1f)
-		{
-			m_SpriteRenderer.flipX = false;
+			m_FacingRight = moveInput > 0;
 		}
 
 		if (m_Grounded)
