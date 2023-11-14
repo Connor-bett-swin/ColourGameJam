@@ -54,6 +54,8 @@ public class ArrowRainSequence : MonoBehaviour
 			shadowArrow.transform.localPosition = new Vector3((x - m_Width / 2) * 0.5f, 0);
 		}
 
+		LeanTween.alpha(shadowArrows, 1, 0.25f).setFrom(0);
+
 		LeanTween.moveY(shadowArrows, transform.position.y, m_FireArrowsDelay)
 			.setEaseOutQuad()
 			.setDestroyOnComplete(true);

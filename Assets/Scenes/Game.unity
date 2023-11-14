@@ -1660,7 +1660,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FireArrowsDelay: 1.5
   m_ArrowDensity: 0.5
-  m_Width: 30
+  m_Width: 28
   m_Ground: 28
   m_GapWidth: 5
   m_ShadowArrowPrefab: {fileID: 7845174230646450611, guid: 5965c2f3c8d529a48aad3ef3ff489b04,
