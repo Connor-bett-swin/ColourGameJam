@@ -98,6 +98,7 @@ public class BossController : MonoBehaviour
 	{
 		if (m_Grounded || m_AirTime < m_CoyoteTime)
 		{
+			m_AirTime = m_CoyoteTime;
 			m_Grounded = false;
 			m_Rigidbody.velocity = new Vector2(m_Rigidbody.velocity.x, m_JumpSpeed);
 		}

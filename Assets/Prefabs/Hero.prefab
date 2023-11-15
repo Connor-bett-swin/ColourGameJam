@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 689043632588685203}
   - component: {fileID: 1128151018275122450}
   - component: {fileID: 5763833513015010177}
-  m_Layer: 0
+  - component: {fileID: 8493780516498501396}
+  - component: {fileID: 3681039359021667247}
+  m_Layer: 11
   m_Name: Hero
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,3 +150,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8493780516498501396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6525769785132930033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4508d6b5424fc354485234193c867ec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveVelocity: 8
+  MoveAcceleration: 30
+  JumpVelocity: 13
+  CoyoteTime: 0.3
+  Feet: 1.5
+  GroundMask:
+    serializedVersion: 2
+    m_Bits: 257
+  m_Rigidbody: {fileID: 689043632588685203}
+--- !u!114 &3681039359021667247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6525769785132930033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1cfa47ca0ab7114db857ea9594b01a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
