@@ -164,9 +164,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveVelocity: 8
   MoveAcceleration: 30
-  JumpVelocity: 13
+  JumpVelocity: 15
   CoyoteTime: 0.3
-  Feet: 1.5
   GroundMask:
     serializedVersion: 2
     m_Bits: 257

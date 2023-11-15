@@ -1373,7 +1373,7 @@ Transform:
   m_GameObject: {fileID: 784479757}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.56, y: 1.68, z: 0.7419661}
+  m_LocalPosition: {x: -0.16, y: 1.68, z: 0.7419661}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3228,6 +3228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2042570281}
   - component: {fileID: 2042570282}
+  - component: {fileID: 2042570283}
   m_Layer: 0
   m_Name: Coordinator
   m_TagString: Untagged
@@ -3264,6 +3265,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Hero: {fileID: 1537383561}
   m_Player: {fileID: 1108156036}
+  m_JumpAngle: 45
+  m_DropAngle: 45
+--- !u!114 &2042570283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042570280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
 --- !u!1 &2112160244
 GameObject:
   m_ObjectHideFlags: 0

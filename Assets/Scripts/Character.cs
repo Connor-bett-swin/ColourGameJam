@@ -12,6 +12,8 @@ public class Character : MonoBehaviour
     public float CoyoteTime = 0.3f;
     public LayerMask GroundMask;
 
+    public bool Grounded => m_Grounded;
+
 	[SerializeField]
     private Rigidbody2D m_Rigidbody;
     [SerializeField]
@@ -78,5 +80,11 @@ public class Character : MonoBehaviour
 	{
 		Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(m_Collider.bounds.center - new Vector3(0, m_Collider.bounds.extents.y), 0.5f);
+	}
+
+	private void OnDrawGizmos()
+	{
+		Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position, transform.position + new Vector3(m_TargetMoveVelocity, 0));
 	}
 }
