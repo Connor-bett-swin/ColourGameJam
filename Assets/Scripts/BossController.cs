@@ -29,6 +29,7 @@ public class BossController : MonoBehaviour
 	[SerializeField]
 	private Animator m_Animator;
 	private int m_ColorIndex;
+	private bool m_Drop;
 	private float m_Squish;
 	private float m_SquishVelocity;
 	private bool m_FacingRight;
@@ -37,12 +38,14 @@ public class BossController : MonoBehaviour
 	private Vector2 m_Velocity;
 	private ContactPoint2D[] m_Contacts = new ContactPoint2D[8];
     private Rigidbody2D m_Rigidbody;
+	private Collider2D m_Collider;
 	private PlayerInput m_PlayerInput;
 	private InputAction m_MoveAction;
 
 	private void Awake()
 	{
 		m_Rigidbody = GetComponent<Rigidbody2D>();
+		m_Collider = GetComponent<Collider2D>();
 		m_PlayerInput = GetComponent<PlayerInput>();
 
 		m_MoveAction = m_PlayerInput.actions["Move"];
@@ -86,7 +89,9 @@ public class BossController : MonoBehaviour
 			m_AirTime += Time.deltaTime;
 		}
 
-		Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Boss"), LayerMask.NameToLayer("Platform"), moveInput.y < 0);
+		m_Drop = moveInput.y < 0;
+
+		//Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Boss"), LayerMask.NameToLayer("Platform"), moveInput.y < 0);
 	}
 
 	private void OnJump()
@@ -108,6 +113,23 @@ public class BossController : MonoBehaviour
 			color.a = sprite.color.a;
 			sprite.color = color;
 		}
+	}
+
+	private void OnCollisionStay2D(Collision2D collision)
+	{
+		if (collision.gameObject.layer != LayerMask.NameToLayer("Platform"))
+		{
+			return;
+		}
+
+		if (!m_Drop)
+		{
+			return;
+		}
+
+		Physics2D.IgnoreCollision(m_Collider, collision.collider, true);
+
+		LeanTween.delayedCall(0.5f, () => Physics2D.IgnoreCollision(m_Collider, collision.collider, false));
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)
