@@ -171,6 +171,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 257
   m_Rigidbody: {fileID: 689043632588685203}
+  m_Collider: {fileID: 1128151018275122450}
 --- !u!114 &3681039359021667247
 MonoBehaviour:
   m_ObjectHideFlags: 0
