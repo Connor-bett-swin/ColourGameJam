@@ -10,7 +10,6 @@ public class Character : MonoBehaviour
     public float MoveAcceleration = 30;
     public float JumpVelocity = 10;
     public float CoyoteTime = 0.3f;
-    public float Feet = 1;
     public LayerMask GroundMask;
 
 	[SerializeField]
@@ -58,7 +57,7 @@ public class Character : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-        m_Grounded = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.down * Feet, 0.5f, GroundMask) != null;
+        m_Grounded = Physics2D.OverlapCircle(m_Collider.bounds.center - new Vector3(0, m_Collider.bounds.extents.y), 0.5f, GroundMask) != null;
 	}
 
 	private void Update()
@@ -78,6 +77,6 @@ public class Character : MonoBehaviour
 	private void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere((Vector2)transform.position + Vector2.down * Feet, 0.5f);
+        Gizmos.DrawWireSphere(m_Collider.bounds.center - new Vector3(0, m_Collider.bounds.extents.y), 0.5f);
 	}
 }
