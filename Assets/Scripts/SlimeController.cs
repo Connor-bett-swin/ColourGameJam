@@ -41,15 +41,15 @@ public class SlimeController : MonoBehaviour
 			sprite.flipX = m_FacingRight;
 		}
 
-		if (!Physics2D.Raycast((Vector2)transform.position + MoveDirection * 0.2f, Vector2.down, 1.5f, LayerMask.GetMask("Default", "Platform")))
-		{
-			m_FacingRight = !m_FacingRight;
-		}
+		//if (!Physics2D.Raycast((Vector2)transform.position + MoveDirection * 0.2f, Vector2.down, 1.5f, LayerMask.GetMask("Default", "Platform")))
+		//{
+		//	m_FacingRight = !m_FacingRight;
+		//}
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.contactCount > 0 && Vector3.Dot(collision.contacts[0].normal, MoveDirection) < -0.8f)
+		if (collision.contactCount > 0 && Vector3.Dot(collision.contacts[0].normal, MoveDirection) < -0.5f)
 		{
 			m_FacingRight = !m_FacingRight;
 		}

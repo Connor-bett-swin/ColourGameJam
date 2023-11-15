@@ -32,7 +32,7 @@ public class Laser : MonoBehaviour
 		m_Beam.startColor = m_Colors[ColorIndex];
 		m_Beam.endColor = m_Colors[ColorIndex];
 
-		m_Beam.material = m_Materials[ColorIndex];
+		//m_Beam.material = m_Materials[ColorIndex];
 
 		m_Beam.SetPosition(0, new Vector3(-Separation, 0, 0));
 		m_Beam.SetPosition(1, new Vector3(Separation, 0, 0));

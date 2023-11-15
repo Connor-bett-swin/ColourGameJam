@@ -40,13 +40,13 @@ public class LaserGridSequence : MonoBehaviour
 
 	private void Sweep(bool horizontal, bool top)
 	{
-		var laser = Instantiate(m_LaserPrefab).GetComponent<Laser>();
-		laser.transform.position = (horizontal ? new Vector2(0, m_Size.y) : new Vector2(m_Size.x, 0)) / 2;
-		laser.transform.position *= top ? 1 : -1;
+		var laser = Instantiate(m_LaserPrefab, transform).GetComponent<Laser>();
+		laser.transform.localPosition = (horizontal ? new Vector2(0, m_Size.y) : new Vector2(m_Size.x, 0)) / 2;
+		laser.transform.localPosition *= top ? 1 : -1;
 		laser.transform.eulerAngles = new Vector3(0, 0, horizontal ? 0 : 90);
 		laser.Separation = (horizontal ? m_Size.x : m_Size.y) / 2;
 
-		var finalPosition = -laser.transform.position;
+		var finalPosition = -laser.transform.localPosition;
 
 		var sequence = LeanTween.sequence();
 		sequence.append(LeanTween.alpha(laser.gameObject, 1, 0.5f).setFrom(0));
@@ -54,7 +54,7 @@ public class LaserGridSequence : MonoBehaviour
 		sequence.append(() => laser.Activated = true);
 		sequence.append(1);
 
-		sequence.append(LeanTween.move(laser.gameObject, finalPosition, 4).setEaseInOutQuad());
+		sequence.append(LeanTween.moveLocal(laser.gameObject, finalPosition, 4).setEaseInOutQuad());
 
 		sequence.append(0.5f);
 		sequence.append(() => laser.Activated = false);
@@ -63,7 +63,7 @@ public class LaserGridSequence : MonoBehaviour
 
 	private void Spin(int spins, float revolutionTime)
 	{
-		var laser = Instantiate(m_LaserPrefab).GetComponent<Laser>();
+		var laser = Instantiate(m_LaserPrefab, transform).GetComponent<Laser>();
 		laser.Separation = Mathf.Min(m_Size.x, m_Size.y) / 2;
 
 		var sequence = LeanTween.sequence();
@@ -72,7 +72,7 @@ public class LaserGridSequence : MonoBehaviour
 		sequence.append(() => laser.Activated = true);
 		sequence.append(1);
 
-		sequence.append(LeanTween.rotate(laser.gameObject, new Vector3(0, 0, 360 * spins), spins * revolutionTime).setEaseInOutQuad());
+		sequence.append(LeanTween.rotateLocal(laser.gameObject, new Vector3(0, 0, 360 * spins), spins * revolutionTime).setEaseInOutQuad());
 
 		sequence.append(0.5f);
 		sequence.append(() => laser.Activated = false);
