@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class BossController : MonoBehaviour
 {
 	[SerializeField]
-	private ColorScheme m_Colors;
+	private Color[] m_Colors;
 	[SerializeField]
 	private float m_MoveSpeed = 8;
 	[SerializeField]
