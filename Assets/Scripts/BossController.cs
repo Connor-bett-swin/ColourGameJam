@@ -25,7 +25,7 @@ public class BossController : MonoBehaviour
 	[SerializeField]
 	private GameObject m_Sprites;
 	[SerializeField]
-	private SpriteRenderer m_BodySprite;
+	private SpriteRenderer[] m_ColorizedSprites;
 	[SerializeField]
 	private Animator m_Animator;
 	private int m_ColorIndex;
@@ -47,7 +47,7 @@ public class BossController : MonoBehaviour
 
 		m_MoveAction = m_PlayerInput.actions["Move"];
 
-		m_BodySprite.color = m_Colors[m_ColorIndex];
+		OnChangeColor();
 	}
 
 	private void FixedUpdate()
@@ -70,7 +70,7 @@ public class BossController : MonoBehaviour
 		m_Sprites.transform.localScale = new Vector3(Mathf.LerpUnclamped(1, 1 + m_SquishIntensity, m_Squish),
 			Mathf.LerpUnclamped(1, 1 - m_SquishIntensity, m_Squish), 1);
 
-		m_Sprites.transform.localScale = new Vector3(m_Sprites.transform.localScale.x * (m_FacingRight ? -1 : 1), m_Sprites.transform.localScale.y, 1);
+		//m_Sprites.transform.localScale = new Vector3(m_Sprites.transform.localScale.x * (m_FacingRight ? -1 : 1), m_Sprites.transform.localScale.y, 1);
 
 		if (Mathf.Abs(moveInput.x) > 0.1f)
 		{
@@ -101,7 +101,13 @@ public class BossController : MonoBehaviour
 	private void OnChangeColor()
 	{
 		m_ColorIndex = (m_ColorIndex + 1) % m_Colors.Length;
-		m_BodySprite.color = m_Colors[m_ColorIndex];
+
+		foreach (var sprite in m_ColorizedSprites)
+		{
+			var color = m_Colors[m_ColorIndex];
+			color.a = sprite.color.a;
+			sprite.color = color;
+		}
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)
