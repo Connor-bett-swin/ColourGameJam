@@ -1143,7 +1143,7 @@ MonoBehaviour:
   SniperArrow: {fileID: 3123526685660525841, guid: 6282ffc181d761a4aa6d48106b838b5a,
     type: 3}
   warningLine: {fileID: 529612571}
-  shootPoint: {fileID: 529612573}
+  shootPoint: {fileID: 4627407689025937725}
   warningDuration: 0.5
   arrowSpeed: 40
 --- !u!4 &529612573
@@ -3514,6 +3514,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8186c30281d3afb4bbfe5926eb512c27, type: 3}
+--- !u!4 &4627407689025937725 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1606753483787899571, guid: 8186c30281d3afb4bbfe5926eb512c27,
+    type: 3}
+  m_PrefabInstance: {fileID: 4627407689025937724}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4662316631047498241
 PrefabInstance:
   m_ObjectHideFlags: 0
