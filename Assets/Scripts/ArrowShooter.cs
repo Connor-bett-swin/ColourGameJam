@@ -7,12 +7,13 @@ using UnityEngine.InputSystem;
 public class ArrowShooter : MonoBehaviour
 {
     public GameObject SniperArrow;
-    public LineRenderer warningLine; // I HAVENT ATTACHED THE LINE COMPONENT YET*******
+    public LineRenderer warningLine;
     public Transform shootPoint; 
     public float warningDuration = 2f; // Duration for which the warning line is shown
     public float arrowSpeed = 5f; // Speed of the arrow
 
     private GameObject player;
+    private bool isShooting = false; //coroutine toggle
 
     private void Start()
     {
@@ -21,21 +22,44 @@ public class ArrowShooter : MonoBehaviour
 
 	private void Update()
 	{
-		if (Keyboard.current.digit3Key.wasPressedThisFrame)
-		{
-			StartCoroutine(ShootAtPlayer());
-		}
+        if (isShooting)
+        {
+            StartCoroutine(ShootAtPlayer());
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3) && !isShooting)
+        {
+            isShooting = true;
+            StartCoroutine(ShootArrow());
+        }
 	}
 
     private IEnumerator ShootAtPlayer()
     {
+        ShowWarningLine(player.transform.position);
         Vector2 targetPosition = player.transform.position;
-        ShowWarningLine(targetPosition);
 
         yield return new WaitForSeconds(warningDuration);
 
         HideWarningLine();
-        ShootArrow(targetPosition);
+        //ShootArrow(targetPosition);
+        isShooting = false;
+    }
+    private IEnumerator ShootArrow()
+    {
+        yield return new WaitForSeconds(warningDuration);
+        Vector2 targetPosition = player.transform.position;
+
+        GameObject arrow = Instantiate(SniperArrow, shootPoint.position, Quaternion.identity);
+        Rigidbody2D rb = arrow.GetComponent<Rigidbody2D>();
+        Vector2 direction = (targetPosition - (Vector2)shootPoint.position).normalized;
+        
+        // Calculate the angle and rotate the arrow
+        float angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) + 90;
+        arrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        rb.velocity = direction * arrowSpeed;
     }
 
     private void ShowWarningLine(Vector2 targetPosition)
@@ -48,13 +72,5 @@ public class ArrowShooter : MonoBehaviour
     private void HideWarningLine()
     {
         warningLine.enabled = false;
-    }
-
-    private void ShootArrow(Vector2 targetPosition)
-    {
-        GameObject arrow = Instantiate(SniperArrow, shootPoint.position, Quaternion.identity);
-        Rigidbody2D rb = arrow.GetComponent<Rigidbody2D>();
-        Vector2 direction = (targetPosition - (Vector2)shootPoint.position).normalized;
-        rb.velocity = direction * arrowSpeed;
     }
 }
