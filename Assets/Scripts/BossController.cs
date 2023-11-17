@@ -17,6 +17,8 @@ public class BossController : MonoBehaviour
 	[SerializeField]
 	private float m_CoyoteTime = 0.3f;
 	[SerializeField]
+	private float m_SlimeHealth = 10;
+	[SerializeField]
 	private float m_SquishDamping = 0.1f;
 	[SerializeField]
 	private float m_SquishIntensity = 0.2f;
@@ -28,6 +30,7 @@ public class BossController : MonoBehaviour
 	private SpriteRenderer[] m_ColorizedSprites;
 	[SerializeField]
 	private Animator m_Animator;
+	private Health m_Health;
 	private int m_ColorIndex;
 	private bool m_Drop;
 	private float m_Squish;
@@ -46,6 +49,7 @@ public class BossController : MonoBehaviour
 
 	private void Awake()
 	{
+		m_Health = GetComponent<Health>();
 		m_Rigidbody = GetComponent<Rigidbody2D>();
 		m_Collider = GetComponent<Collider2D>();
 		m_PlayerInput = GetComponent<PlayerInput>();
@@ -65,6 +69,8 @@ public class BossController : MonoBehaviour
 
 	private void Update()
 	{
+		transform.localScale = Vector3.one * m_Health.Value / m_Health.InitialValue;
+
 		var moveInput = m_MoveAction.ReadValue<Vector2>();
 
 		var targetVelocity = new Vector2(moveInput.x * m_MoveSpeed, m_Rigidbody.velocity.y);
@@ -157,6 +163,6 @@ public class BossController : MonoBehaviour
 
 		Destroy(collision.gameObject);
 
-		transform.localScale += new Vector3(0.2f, 0.2f, 0);
+		m_Health.Heal(m_SlimeHealth);
 	}
 }
