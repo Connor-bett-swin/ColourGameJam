@@ -129,8 +129,11 @@ public class BossController : MonoBehaviour
 		}
 
 		Physics2D.IgnoreCollision(m_Collider, collision.collider, true);
+	}
 
-		LeanTween.delayedCall(0.5f, () => Physics2D.IgnoreCollision(m_Collider, collision.collider, false));
+	private void OnTriggerExit2D(Collider2D collision)
+	{
+		Physics2D.IgnoreCollision(m_Collider, collision, false);
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)
