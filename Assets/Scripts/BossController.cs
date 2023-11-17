@@ -42,6 +42,8 @@ public class BossController : MonoBehaviour
 	private PlayerInput m_PlayerInput;
 	private InputAction m_MoveAction;
 
+	public int ColorIndex => m_ColorIndex;
+
 	private void Awake()
 	{
 		m_Rigidbody = GetComponent<Rigidbody2D>();

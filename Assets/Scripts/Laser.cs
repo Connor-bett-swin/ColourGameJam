@@ -19,11 +19,17 @@ public class Laser : MonoBehaviour
 	[SerializeField]
 	private LineRenderer m_Beam;
 	[SerializeField]
-	private BoxCollider2D m_Collider;
+	private Hitbox m_Hitbox;
+	private BoxCollider2D m_HitboxCollider;
 
 	public int ColorIndex;
 	public float Separation = 10;
 	public bool Activated;
+
+	private void Awake()
+	{
+		m_HitboxCollider = m_Hitbox.GetComponent<BoxCollider2D>();
+	}
 
 	private void Start()
 	{
@@ -43,12 +49,14 @@ public class Laser : MonoBehaviour
 		m_LeftEmitterGlass.color = m_Colors[ColorIndex];
 		m_RightEmitterGlass.color = m_Colors[ColorIndex];
 
-		m_Collider.size = new Vector2(Separation * 2, m_Collider.size.y);
+		m_Hitbox.ColorIndex = ColorIndex;
+
+		m_HitboxCollider.size = new Vector2(Separation * 2, m_HitboxCollider.size.y);
 	}
 
 	private void Update()
 	{
 		m_Beam.enabled = Activated;
-		m_Collider.enabled = Activated;
+		m_HitboxCollider.enabled = Activated;
 	}
 }
