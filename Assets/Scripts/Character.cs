@@ -58,7 +58,10 @@ public class Character : MonoBehaviour
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
-		Physics2D.IgnoreCollision(m_Collider, collision, false);
+		if (collision.gameObject.layer == LayerMask.NameToLayer("Platform"))
+		{
+			Physics2D.IgnoreCollision(m_Collider, collision, false);
+		}
 	}
 
 	private void FixedUpdate()
