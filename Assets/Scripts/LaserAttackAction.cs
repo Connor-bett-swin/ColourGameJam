@@ -8,6 +8,8 @@ public class LaserAttackAction : ActionBase
 {
 	protected override TaskStatus OnUpdate()
 	{
+		Owner.SendMessage("OnLaserAttack");
+
 		return TaskStatus.Success;
 	}
 }

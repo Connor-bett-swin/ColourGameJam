@@ -259,6 +259,8 @@ MonoBehaviour:
     m_Bits: 257
   m_Rigidbody: {fileID: 689043632588685203}
   m_Collider: {fileID: 1128151018275122450}
+  m_Animator: {fileID: 8736863371641702992}
+  m_Sprite: {fileID: 5763833513015010177}
 --- !u!114 &3681039359021667247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,6 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_JumpAngle: 45
   m_DropAngle: 45
+  m_Animator: {fileID: 8736863371641702992}
 --- !u!114 &6036213078297510575
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,7 +13,8 @@ public class Hero : MonoBehaviour
 	private float m_JumpAngle = 45;
 	[SerializeField]
 	private float m_DropAngle = 45;
-
+	[SerializeField]
+	private Animator m_Animator;
 	private GameObject m_Player;
 	private Seeker m_Seeker;
 	private Character m_Character;
@@ -22,11 +23,10 @@ public class Hero : MonoBehaviour
 	private void Awake()
 	{
 		m_BehaviorTree = new BehaviorTreeBuilder(gameObject)
-			.RepeatForever()
-				.Sequence()
-					.WaitTime(1)
-					.ThrowBombAction()
-				.End()
+			.Sequence()
+				.WaitTime(1)
+				.ThrowBombAction()
+			.End()
 			.Build();
 
 		m_Seeker = GetComponent<Seeker>();
@@ -43,6 +43,8 @@ public class Hero : MonoBehaviour
 	private void Update()
 	{
 		m_BehaviorTree.Tick();
+
+		m_Character.Move(0);
 
 		if (m_Path == null || m_Path.Count == 0)
 		{

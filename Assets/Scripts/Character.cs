@@ -12,12 +12,17 @@ public class Character : MonoBehaviour
     public float CoyoteTime = 0.3f;
     public LayerMask GroundMask;
 
+    public Vector2 Velocity => m_Rigidbody.velocity;
     public bool Grounded => m_Grounded;
 
 	[SerializeField]
     private Rigidbody2D m_Rigidbody;
     [SerializeField]
     private Collider2D m_Collider;
+    [SerializeField]
+    private Animator m_Animator;
+	[SerializeField]
+	private SpriteRenderer m_Sprite;
     private ContactPoint2D[] m_ContactPoints = new ContactPoint2D[16];
     private float m_CurrentMoveVelocity;
 	private float m_AirTime;
@@ -30,16 +35,23 @@ public class Character : MonoBehaviour
 	}
 
     public void Jump()
-    {
-        if (m_Grounded || m_AirTime < CoyoteTime)
-        {
-            m_AirTime = CoyoteTime;
-			m_Grounded = false;
-            m_Rigidbody.velocity = new Vector2(m_Rigidbody.velocity.x, JumpVelocity);
-        }
-    }
+	{
+		if (!m_Grounded && m_AirTime >= CoyoteTime)
+		{
+			return;
+		}
 
-    public void Drop()
+		m_AirTime = CoyoteTime;
+		m_Grounded = false;
+		m_Rigidbody.velocity = new Vector2(m_Rigidbody.velocity.x, JumpVelocity);
+
+		if (m_Animator != null)
+		{
+			m_Animator.SetTrigger("Jump");
+		}
+	}
+
+	public void Drop()
     {
         var contactFilter = new ContactFilter2D();
         contactFilter.SetLayerMask(LayerMask.GetMask("Platform"));
@@ -71,6 +83,19 @@ public class Character : MonoBehaviour
 
 	private void Update()
 	{
+        if (m_Animator != null)
+        {
+			m_Animator.SetFloat("HorizontalVelocity", Velocity.x);
+			m_Animator.SetFloat("VerticalVelocity", Velocity.y);
+			m_Animator.SetBool("Grounded", Grounded);
+			m_Animator.SetBool("Moving", Mathf.Abs(m_TargetMoveVelocity) > 0.1f);
+		}
+
+		if (m_Sprite != null)
+		{
+			m_Sprite.flipX = Velocity.x < 0;
+		}
+
 		if (m_Grounded)
         {
             m_AirTime = 0;
