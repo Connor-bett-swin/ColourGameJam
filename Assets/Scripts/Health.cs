@@ -5,10 +5,13 @@ using UnityEngine;
 
 public class Health : Range
 {
+    public AudioSource HurtSfx;
+    public AudioSource HealSfx;
+
 	public void Hurt(float amount)
 	{
 		Debug.Log(Value);
-
+		HurtSfx.Play();
 		Value -= amount;
 		
 		if (Value <= 0)
@@ -19,6 +22,7 @@ public class Health : Range
 
 	public void Heal(float amount)
 	{
+		HealSfx.Play();
 		Value += amount;
 	}
 }
