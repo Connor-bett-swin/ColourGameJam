@@ -14,6 +14,10 @@ public class ArrowShooter : MonoBehaviour
 
     private GameObject player;
     private bool isShooting = false; //coroutine toggle
+    public AudioSource Charge_Sfx;
+    public AudioSource Shot_Sfx;
+
+
 
     private void Start()
     {
@@ -24,12 +28,15 @@ public class ArrowShooter : MonoBehaviour
 	{
         if (isShooting)
         {
+        
+
             StartCoroutine(ShootAtPlayer());
 
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3) && !isShooting)
         {
+            Charge_Sfx.Play();
             isShooting = true;
             StartCoroutine(ShootArrow());
         }
@@ -37,6 +44,7 @@ public class ArrowShooter : MonoBehaviour
 
     private IEnumerator ShootAtPlayer()
     {
+        Shot_Sfx.Play();
         ShowWarningLine(player.transform.position);
         Vector2 targetPosition = player.transform.position;
 
