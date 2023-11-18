@@ -62,15 +62,7 @@ public class Hero : MonoBehaviour
 	{
 		m_Player = GameObject.FindGameObjectWithTag("Player");
 		m_PlayerHealth = m_Player.GetComponent<Health>();
-
-		//StartCoroutine(Seek());
 	}
-
-	//private PointNode GetFurthestNode()
-	//{
-	//	var pathNodes = AstarPath.active.data.pointGraph.nodes;
-	//	return pathNodes.OrderByDescending(x => Vector2.Distance((Vector3)x.position, m_Player.transform.position)).First();
-	//}
 
 	private PointNode GetFurthestNode()
 	{
@@ -80,7 +72,7 @@ public class Hero : MonoBehaviour
 
 	private void Update()
 	{
-		//m_BehaviorTree.Tick();
+		m_BehaviorTree.Tick();
 
 		UpdateMovement();
 
