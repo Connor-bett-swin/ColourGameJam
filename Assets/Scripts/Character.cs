@@ -54,7 +54,14 @@ public class Character : MonoBehaviour
         var platformCollider = m_ContactPoints.First().collider;
 
 		Physics2D.IgnoreCollision(m_Collider, platformCollider, true);
-		LeanTween.delayedCall(0.5f, () => Physics2D.IgnoreCollision(m_Collider, platformCollider, false));
+	}
+
+	private void OnTriggerExit2D(Collider2D collision)
+	{
+		if (collision.gameObject.layer == LayerMask.NameToLayer("Platform"))
+		{
+			Physics2D.IgnoreCollision(m_Collider, collision, false);
+		}
 	}
 
 	private void FixedUpdate()
