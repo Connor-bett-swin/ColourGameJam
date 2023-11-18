@@ -250,8 +250,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4508d6b5424fc354485234193c867ec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveVelocity: 8
-  MoveAcceleration: 20
+  MoveVelocity: 10
+  MoveAcceleration: 10
   JumpVelocity: 17
   CoyoteTime: 0.3
   GroundMask:
@@ -273,7 +273,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1cfa47ca0ab7114db857ea9594b01a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ReachedNodeDistance: 1.5
   m_JumpCooldown: 0.75
   m_JumpAngle: 45
   m_DropAngle: 50
