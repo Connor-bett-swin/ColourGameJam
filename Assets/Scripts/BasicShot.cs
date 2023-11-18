@@ -12,6 +12,8 @@ public class BasicShot : MonoBehaviour
     public float arrowSpeed = 5f; // Speed of the arrow
 
     private GameObject player;
+    public AudioSource BasicShotSFX;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -23,12 +25,12 @@ public class BasicShot : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             ShootArrow();
-            UnityEngine.Debug.Log("44444444444444444444");
         }
     }
 
     private void ShootArrow()
     {
+        BasicShotSFX.Play();
         Vector2 targetPosition = player.transform.position;
 
         GameObject arrow = Instantiate(SniperArrow, shootPoint.position, Quaternion.identity);
@@ -40,5 +42,6 @@ public class BasicShot : MonoBehaviour
         arrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         rb.velocity = direction * arrowSpeed;
+
     }
 }
