@@ -64,7 +64,7 @@ public class ArrowShooter : MonoBehaviour
         Vector2 direction = (targetPosition - (Vector2)shootPoint.position).normalized;
         
         // Calculate the angle and rotate the arrow
-        float angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) + 90;
+        float angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) + -90;
         arrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         rb.velocity = direction * arrowSpeed;
