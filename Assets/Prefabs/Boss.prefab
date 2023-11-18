@@ -224,6 +224,7 @@ MonoBehaviour:
   m_MoveDamping: 0.05
   m_JumpSpeed: 15
   m_CoyoteTime: 0.3
+  m_SlimeHealth: 10
   m_SquishDamping: 0.1
   m_SquishIntensity: 0.2
   m_SquishFromVelocity: 0.1
