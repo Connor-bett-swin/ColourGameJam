@@ -4527,6 +4527,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3681039359021667247, guid: 8186c30281d3afb4bbfe5926eb512c27,
+        type: 3}
+      propertyPath: m_ArrowRainSequence
+      value: 
+      objectReference: {fileID: 2112160245}
+    - target: {fileID: 3681039359021667247, guid: 8186c30281d3afb4bbfe5926eb512c27,
+        type: 3}
+      propertyPath: m_LaserGridSequence
+      value: 
+      objectReference: {fileID: 1415456791}
     - target: {fileID: 6525769785132930033, guid: 8186c30281d3afb4bbfe5926eb512c27,
         type: 3}
       propertyPath: m_Name
