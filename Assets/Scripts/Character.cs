@@ -42,7 +42,7 @@ public class Character : MonoBehaviour
 		var distance = displacement.magnitude;
 		var timeToReach = distance / MoveVelocity;
 
-		var gravity = Physics2D.gravity.y * 2;
+		var gravity = Physics2D.gravity.y * m_Rigidbody.gravityScale;
 		var vy = (displacement.y - 0.5f * gravity * timeToReach * timeToReach) / timeToReach;
 		var vx = displacement.x / timeToReach;
 
