@@ -20,6 +20,7 @@ public class Hero : MonoBehaviour
 	[SerializeField]
 	private LaserGridSequence m_LaserGridSequence;
 	private GameObject m_Player;
+	private Health m_PlayerHealth;
 	private Seeker m_Seeker;
 	private Character m_Character;
 	private List<Vector2> m_Path;
@@ -43,6 +44,7 @@ public class Hero : MonoBehaviour
 	private void Start()
 	{
 		m_Player = GameObject.FindGameObjectWithTag("Player");
+		m_PlayerHealth = m_Player.GetComponent<Health>();
 
 		StartCoroutine(Seek());
 	}
