@@ -22,6 +22,11 @@ public class Hero : MonoBehaviour
 	private void Awake()
 	{
 		m_BehaviorTree = new BehaviorTreeBuilder(gameObject)
+			.RepeatForever()
+				.Sequence()
+					.WaitTime(1)
+					.ThrowBombAction()
+				.End()
 			.Build();
 
 		m_Seeker = GetComponent<Seeker>();
