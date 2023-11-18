@@ -14,6 +14,7 @@ public class Character : MonoBehaviour
 
     public Vector2 Velocity => m_Rigidbody.velocity;
     public bool Grounded => m_Grounded;
+	public Vector2 Feet => m_Collider.bounds.center - new Vector3(0, m_Collider.bounds.extents.y);
 
 	[SerializeField]
     private Rigidbody2D m_Rigidbody;
@@ -32,6 +33,40 @@ public class Character : MonoBehaviour
 	public void Move(float direction)
 	{
         m_TargetMoveVelocity = Mathf.Clamp(direction, -1, 1) * MoveVelocity;
+	}
+
+	public Vector2 CalculateInitialVelocity(Vector2 targetPosition)
+	{
+		var displacement = targetPosition - Feet;
+
+		var distance = displacement.magnitude;
+		var timeToReach = distance / MoveVelocity;
+
+		var gravity = Physics2D.gravity.y * 2;
+		var vy = (displacement.y - 0.5f * gravity * timeToReach * timeToReach) / timeToReach;
+		var vx = displacement.x / timeToReach;
+
+		var initialSpeed = Mathf.Sqrt(vx * vx + vy * vy);
+		var initialVelocity = new Vector2(vx, vy).normalized * initialSpeed;
+
+		return initialVelocity;
+	}
+
+	public void JumpTo(Vector2 targetPosition)
+	{
+		if (!m_Grounded && m_AirTime >= CoyoteTime)
+		{
+			return;
+		}
+
+		m_AirTime = CoyoteTime;
+		m_Grounded = false;
+		m_Rigidbody.velocity = CalculateInitialVelocity(targetPosition);
+
+		if (m_Animator != null)
+		{
+			m_Animator.SetTrigger("Jump");
+		}
 	}
 
     public void Jump()
@@ -78,7 +113,7 @@ public class Character : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-        m_Grounded = Physics2D.OverlapCircle(m_Collider.bounds.center - new Vector3(0, m_Collider.bounds.extents.y), 0.5f, GroundMask) != null;
+        m_Grounded = Physics2D.OverlapCircle(Feet, 0.3f, GroundMask) != null;
 	}
 
 	private void Update()
@@ -88,12 +123,15 @@ public class Character : MonoBehaviour
 			m_Animator.SetFloat("HorizontalVelocity", Velocity.x);
 			m_Animator.SetFloat("VerticalVelocity", Velocity.y);
 			m_Animator.SetBool("Grounded", Grounded);
-			m_Animator.SetBool("Moving", Mathf.Abs(m_TargetMoveVelocity) > 0.1f);
+			m_Animator.SetBool("Moving", Mathf.Abs(Velocity.x) > 0.5f);
 		}
 
 		if (m_Sprite != null)
 		{
-			m_Sprite.flipX = Velocity.x < 0;
+			if (Mathf.Abs(Velocity.x) > 0.1f)
+			{
+				m_Sprite.flipX = Velocity.x < 0;
+			}
 		}
 
 		if (m_Grounded)
@@ -106,12 +144,14 @@ public class Character : MonoBehaviour
         }
 
 		m_Rigidbody.velocity = new Vector2(Mathf.SmoothDamp(m_Rigidbody.velocity.x, m_TargetMoveVelocity, ref m_CurrentMoveVelocity, 1 / MoveAcceleration), m_Rigidbody.velocity.y);
+
+		m_TargetMoveVelocity = 0;
 	}
 
 	private void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(m_Collider.bounds.center - new Vector3(0, m_Collider.bounds.extents.y), 0.5f);
+        Gizmos.DrawWireSphere(Feet, 0.5f);
 	}
 
 	private void OnDrawGizmos()
