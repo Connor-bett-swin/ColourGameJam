@@ -54,7 +54,7 @@ public class Character : MonoBehaviour
         var platformCollider = m_ContactPoints.First().collider;
 
 		Physics2D.IgnoreCollision(m_Collider, platformCollider, true);
-	}
+    }
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
