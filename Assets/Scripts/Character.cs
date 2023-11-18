@@ -128,7 +128,7 @@ public class Character : MonoBehaviour
 
 		if (m_Sprite != null)
 		{
-			if (Mathf.Abs(Velocity.x) > 0.1f)
+			if (Mathf.Abs(Velocity.x) > 1.5f)
 			{
 				m_Sprite.flipX = Velocity.x < 0;
 			}

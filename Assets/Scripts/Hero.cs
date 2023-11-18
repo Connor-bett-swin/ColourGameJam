@@ -117,6 +117,11 @@ public class Hero : MonoBehaviour
 
 		var direction = (nextNode - (Vector2)m_Character.transform.position).normalized;
 
+		if (Vector2.Distance(nextNode, m_Character.transform.position) < 1.5f)
+		{
+			return;
+		}
+
 		if (m_JumpCooldownTimer <= 0 && Vector2.Angle(Vector2.up, direction) < m_JumpAngle)
 		{
 			m_Character.JumpTo(nextNode);
