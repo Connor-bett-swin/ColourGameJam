@@ -8,6 +8,8 @@ public class ArrowAttackAction : ActionBase
 {
 	protected override TaskStatus OnUpdate()
 	{
+		Owner.SendMessage("OnArrowAttack");
+
 		return TaskStatus.Success;
 	}
 }
