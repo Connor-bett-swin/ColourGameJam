@@ -783,6 +783,12 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!4 &428738329 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1606753483787899571, guid: 8186c30281d3afb4bbfe5926eb512c27,
+    type: 3}
+  m_PrefabInstance: {fileID: 4627407689025937724}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &438401258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,7 +1074,7 @@ GameObject:
   - component: {fileID: 529612572}
   - component: {fileID: 529612571}
   m_Layer: 0
-  m_Name: SniperVolley
+  m_Name: SniperShot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1193,9 +1199,9 @@ MonoBehaviour:
   SniperArrow: {fileID: 3123526685660525841, guid: 6282ffc181d761a4aa6d48106b838b5a,
     type: 3}
   warningLine: {fileID: 529612571}
-  shootPoint: {fileID: 529612573}
+  shootPoint: {fileID: 428738329}
   warningDuration: 0.5
-  arrowSpeed: 40
+  arrowSpeed: 50
 --- !u!4 &529612573
 Transform:
   m_ObjectHideFlags: 0
@@ -3182,6 +3188,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 487991184}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1992604381
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1992604383}
+  - component: {fileID: 1992604382}
+  m_Layer: 0
+  m_Name: BasicShot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1992604382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992604381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d07d543d4fc6ef441a13582ff70d2ebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SniperArrow: {fileID: 3123526685660525841, guid: 6282ffc181d761a4aa6d48106b838b5a,
+    type: 3}
+  shootPoint: {fileID: 428738329}
+  arrowSpeed: 15
+--- !u!4 &1992604383
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992604381}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2013340801
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3637,6 +3691,7 @@ SceneRoots:
   - {fileID: 2112160246}
   - {fileID: 1415456790}
   - {fileID: 529612573}
+  - {fileID: 1992604383}
   - {fileID: 891027516}
   - {fileID: 2897082}
   - {fileID: 487991184}
