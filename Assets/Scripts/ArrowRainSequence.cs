@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class ArrowRainSequence : MonoBehaviour
 {
+	
 	[SerializeField]
 	private float m_FireArrowsDelay = 1.5f;
 	[SerializeField]
@@ -21,6 +22,9 @@ public class ArrowRainSequence : MonoBehaviour
 	private GameObject m_ShadowArrowPrefab;
 	[SerializeField]
 	private GameObject m_ArrowPrefab;
+    public AudioSource AudioWhole;
+
+	
 
 	private void Update()
 	{
@@ -32,6 +36,7 @@ public class ArrowRainSequence : MonoBehaviour
 
 	public void Activate()
 	{
+		AudioWhole.Play();
 		var gapX = Random.Range(0, m_Width - m_GapWidth);
 
 		var sequence = LeanTween.sequence();

@@ -17,6 +17,8 @@ public class LaserGridSequence : MonoBehaviour
 	private Vector2 m_Size;
 	[SerializeField]
 	private GameObject m_LaserPrefab;
+    public AudioSource LaserStart;
+
 
 	private void Update()
 	{
@@ -28,6 +30,7 @@ public class LaserGridSequence : MonoBehaviour
 
 	public void Activate()
 	{
+		LaserStart.Play();
 		if (Random.value > m_SpinChance)
 		{
 			Sweep(Random.value > 0.5f, Random.value > 0.5f);

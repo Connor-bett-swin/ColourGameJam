@@ -16,10 +16,13 @@ public class Spawner : MonoBehaviour
 	[SerializeField]
     private GameObject m_SpawnPrefab;
 	private List<GameObject> m_Spawned = new List<GameObject>();
+	public AudioClip[] audioClips;
+    private AudioSource audioSource;
 
 	private void Start()
 	{
 		StartCoroutine(Spawn());
+		audioSource = GetComponent<AudioSource>();
 	}
 
 	private IEnumerator Spawn()
@@ -34,6 +37,16 @@ public class Spawner : MonoBehaviour
 
 			var spawn = Instantiate(m_SpawnPrefab, transform.position, Quaternion.identity);
 			m_Spawned.Add(spawn);
+			PlayRandomAudio();
 		}
 	}
+	 public void PlayRandomAudio()
+    {
+        if (audioClips.Length == 0) return; 
+
+        int randomIndex = Random.Range(0, audioClips.Length);
+        AudioClip randomClip = audioClips[randomIndex]; 
+
+         audioSource.PlayOneShot(randomClip, 0.02f);
+    }
 }

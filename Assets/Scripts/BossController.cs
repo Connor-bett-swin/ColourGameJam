@@ -164,5 +164,6 @@ public class BossController : MonoBehaviour
 		Destroy(collision.gameObject);
 
 		m_Health.Heal(m_SlimeHealth);
+
 	}
 }
