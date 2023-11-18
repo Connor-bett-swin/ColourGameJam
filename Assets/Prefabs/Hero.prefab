@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6643797654633879742}
   - component: {fileID: 8493780516498501396}
   - component: {fileID: 3681039359021667247}
+  - component: {fileID: 6036213078297510575}
   m_Layer: 11
   m_Name: Hero
   m_TagString: Untagged
@@ -250,3 +251,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_JumpAngle: 45
   m_DropAngle: 45
+--- !u!114 &6036213078297510575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6525769785132930033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bc75b5d011c9c147bca88e3d67c9fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Cooldown: 8
+  m_BombPrefab: {fileID: 1570915924012457237, guid: bbb29f81be8a7ac43b467c32fcab1ee8,
+    type: 3}

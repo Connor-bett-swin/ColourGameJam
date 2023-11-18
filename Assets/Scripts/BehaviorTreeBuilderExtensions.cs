@@ -15,6 +15,11 @@ public static class BehaviorTreeBuilderExtensions
 		return builder.AddNode(new ArrowAttackAction { Name = name });
 	}
 
+	public static BehaviorTreeBuilder ThrowBombAction(this BehaviorTreeBuilder builder, string name = "Laser Attack")
+	{
+		return builder.AddNode(new ThrowBombAction { Name = name });
+	}
+
 	public static BehaviorTreeBuilder FireAction(this BehaviorTreeBuilder builder, string name = "Laser Attack")
 	{
 		return builder.AddNode(new ArrowAttackAction { Name = name });
