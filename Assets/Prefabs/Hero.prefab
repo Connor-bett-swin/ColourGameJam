@@ -224,7 +224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   drawGizmos: 1
-  detailedGizmos: 0
+  detailedGizmos: 1
   startEndModifier:
     addPoints: 0
     exactStartPoint: 3
@@ -251,8 +251,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveVelocity: 8
-  MoveAcceleration: 30
-  JumpVelocity: 15
+  MoveAcceleration: 20
+  JumpVelocity: 17
   CoyoteTime: 0.3
   GroundMask:
     serializedVersion: 2
@@ -273,9 +273,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1cfa47ca0ab7114db857ea9594b01a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ReachedNodeDistance: 1.5
+  m_JumpCooldown: 0.75
   m_JumpAngle: 45
-  m_DropAngle: 45
+  m_DropAngle: 50
   m_Animator: {fileID: 8736863371641702992}
+  m_Collider: {fileID: 1128151018275122450}
+  m_ArrowRainSequence: {fileID: 0}
+  m_LaserGridSequence: {fileID: 0}
 --- !u!114 &6036213078297510575
 MonoBehaviour:
   m_ObjectHideFlags: 0
