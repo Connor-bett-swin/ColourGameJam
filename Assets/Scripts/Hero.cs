@@ -15,6 +15,10 @@ public class Hero : MonoBehaviour
 	private float m_DropAngle = 45;
 	[SerializeField]
 	private Animator m_Animator;
+	[SerializeField]
+	private ArrowRainSequence m_ArrowRainSequence;
+	[SerializeField]
+	private LaserGridSequence m_LaserGridSequence;
 	private GameObject m_Player;
 	private Seeker m_Seeker;
 	private Character m_Character;
@@ -24,8 +28,11 @@ public class Hero : MonoBehaviour
 	{
 		m_BehaviorTree = new BehaviorTreeBuilder(gameObject)
 			.Sequence()
-				.WaitTime(1)
-				.ThrowBombAction()
+				.WaitTime(Random.Range(3, 6))
+				.SelectorRandom()
+					.ThrowBombAction()
+					.LaserAttackAction()
+					.ArrowAttackAction()
 			.End()
 			.Build();
 
@@ -91,6 +98,16 @@ public class Hero : MonoBehaviour
 
 			yield return new WaitForSeconds(0.5f);
 		}
+	}
+
+	private void OnLaserAttack()
+	{
+		m_LaserGridSequence.Activate();
+	}
+
+	private void OnArrowAttack()
+	{
+		m_ArrowRainSequence.Activate();
 	}
 
 	private void OnDrawGizmos()
