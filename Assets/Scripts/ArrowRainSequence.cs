@@ -16,14 +16,21 @@ public class ArrowRainSequence : MonoBehaviour
 	[SerializeField]
 	private float m_Ground;
 	[SerializeField]
-	private float m_GapWidth = 5;
+	private float m_MinGapWidth = 10;
 	[SerializeField]
 	private float m_SilhouetteFireballScale = 0.75f;
 	[SerializeField]
 	private GameObject m_SilhouetteFireballPrefab;
 	[SerializeField]
 	private GameObject m_FireballPrefab;
+	private Collider2D m_PlayerCollider;
     public AudioSource AudioWhole;
+
+	private void Awake()
+	{
+		var player = GameObject.FindGameObjectWithTag("Player");
+		m_PlayerCollider = player.GetComponent<Collider2D>();
+	}
 
 	private void Update()
 	{
@@ -33,10 +40,16 @@ public class ArrowRainSequence : MonoBehaviour
 		}
 	}
 
+	private float GetGapWidth()
+	{
+		return Mathf.Max(m_MinGapWidth, m_PlayerCollider.bounds.size.x);
+	}
+
 	public void Activate()
 	{
 		AudioWhole.Play();
-		var gapX = Random.Range(0, m_Width - m_GapWidth);
+
+		var gapX = Random.Range(0, m_Width - GetGapWidth());
 
 		var sequence = LeanTween.sequence();
 		sequence.append(() => SpawnSilhouetteFireballs(gapX));
@@ -51,7 +64,7 @@ public class ArrowRainSequence : MonoBehaviour
 
 		for (float x = 0; x < m_Width; x += 1 / m_FireballDensity)
 		{
-			if (x > gapX && x < gapX + m_GapWidth)
+			if (x > gapX && x < gapX + GetGapWidth())
 			{
 				continue;
 			}
@@ -77,7 +90,7 @@ public class ArrowRainSequence : MonoBehaviour
 			fireball.transform.position = new Vector3(transform.position.x + x - m_Width / 2 + Random.Range(-0.5f, 0.5f),
 				transform.position.y + Random.Range(-0.5f, 0.5f));
 			
-			if (x > gapX && x < gapX + m_GapWidth)
+			if (x > gapX && x < gapX + GetGapWidth())
 			{
 				fireball.ColorIndex = colorIndex;
 			}
