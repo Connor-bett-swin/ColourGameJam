@@ -204,5 +204,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 4
+  Grow: 0
   Colored: 0
   ColorIndex: 0

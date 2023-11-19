@@ -8,9 +8,7 @@ public class ThrowBombAction : ActionBase
 {
 	protected override TaskStatus OnUpdate()
 	{
-		//var bombThrow = Owner.GetComponent<BombThrowAttack>();
-
-		//bombThrow.Activate();
+		var hero = Owner.GetComponent<Hero>();
 
 		Owner.SendMessage("OnBombAttack");
 

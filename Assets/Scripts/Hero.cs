@@ -39,6 +39,13 @@ public class Hero : MonoBehaviour
 	private List<Vector2> m_Path = new List<Vector2>();
 	private float m_JumpCooldownTimer;
 
+	public bool IsAttacking()
+	{
+		return !m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Jump") &&
+			!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") &&
+			!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Run");
+	}
+
 	private void Awake()
 	{
 		m_BehaviorTree = new BehaviorTreeBuilder(gameObject)
@@ -121,14 +128,7 @@ public class Hero : MonoBehaviour
 
 	private void UpdateMovement()
 	{
-		if (!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Jump") &&
-			!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") &&
-			!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Run"))
-		{
-			return;
-		}
-
-		if (m_Path.Count == 0)
+		if (m_Path.Count == 0 || IsAttacking())
 		{
 			return;
 		}
