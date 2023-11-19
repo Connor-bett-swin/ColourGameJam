@@ -103,6 +103,11 @@ public class Hero : MonoBehaviour
 
 		UpdateMovement();
 
+		if (IsAttacking())
+		{
+			m_Character.LookAt(m_Player.transform.position);
+		}
+
 		if (m_JumpCooldownTimer > 0)
 		{
 			m_JumpCooldownTimer -= Time.deltaTime;
@@ -111,13 +116,6 @@ public class Hero : MonoBehaviour
 
 	private void UpdateAim()
 	{
-		if (!m_Arm.enabled)
-		{
-			return;
-		}
-
-		m_Character.LookAt(m_Player.transform.position);
-
 		var direction = ((Vector2)m_Player.transform.position - (Vector2)m_Character.transform.position).normalized;
 		var angle = Vector2.SignedAngle(Vector2.right, direction);
 
