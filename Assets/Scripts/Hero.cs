@@ -64,10 +64,19 @@ public class Hero : MonoBehaviour
 		m_PlayerHealth = m_Player.GetComponent<Health>();
 	}
 
-	private PointNode GetFurthestNode()
+	private Vector2 GetTarget()
 	{
+		//var pathNodes = AstarPath.active.data.pointGraph.nodes;
+		//return (Vector3)pathNodes[Random.Range(0, pathNodes.Length)].position;
+
 		var pathNodes = AstarPath.active.data.pointGraph.nodes;
-		return pathNodes.OrderByDescending(x => Mathf.Abs(((Vector3)x.position).x - m_Player.transform.position.x) - 3.5f * Mathf.Abs(((Vector3)x.position).y - m_Player.transform.position.y)).First();
+		return (Vector3)pathNodes.OrderByDescending(x => GetTargetScore((Vector3)x.position)).ElementAt(Random.Range(0, 3)).position;
+	}
+
+	private float GetTargetScore(Vector2 targetPosition)
+	{
+		return Mathf.Abs(targetPosition.x - m_Player.transform.position.x) -
+			3.5f * Mathf.Abs(targetPosition.y - m_Player.transform.position.y);
 	}
 
 	private void Update()
@@ -86,8 +95,7 @@ public class Hero : MonoBehaviour
 	{
 		if (m_Path.Count == 0)
 		{
-			var pathNodes = AstarPath.active.data.pointGraph.nodes;
-			m_Target = (Vector3)pathNodes[Random.Range(0, pathNodes.Length)].position;
+			m_Target = GetTarget();
 			return;
 		}
 
