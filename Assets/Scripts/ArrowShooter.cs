@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class ArrowShooter : MonoBehaviour
 {
+    [SerializeField]
+    private ColorScheme m_Colors;
     public GameObject SniperArrow;
     public LineRenderer warningLine;
     public Transform shootPoint; 
@@ -14,10 +16,9 @@ public class ArrowShooter : MonoBehaviour
 
     private GameObject player;
     private bool isShooting = false; //coroutine toggle
+    private int m_ColorIndex;
     public AudioSource Charge_Sfx;
     public AudioSource Shot_Sfx;
-
-
 
     private void Start()
     {
@@ -39,6 +40,18 @@ public class ArrowShooter : MonoBehaviour
 
     public void Fire()
     {
+        var color = Color.white;
+        m_ColorIndex = -1;
+
+        if (Random.value > 0.2f)
+        {
+			m_ColorIndex = Random.Range(0, m_Colors.Length);
+			color = m_Colors[m_ColorIndex];
+		}
+
+        warningLine.startColor = color;
+		warningLine.endColor = color;
+
 		Charge_Sfx.Play();
 		isShooting = true;
 		StartCoroutine(ShootArrow());
@@ -64,9 +77,15 @@ public class ArrowShooter : MonoBehaviour
         GameObject arrow = Instantiate(SniperArrow, shootPoint.position, Quaternion.identity);
         Rigidbody2D rb = arrow.GetComponent<Rigidbody2D>();
         Vector2 direction = (targetPosition - (Vector2)shootPoint.position).normalized;
-        
-        // Calculate the angle and rotate the arrow
-        float angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) + -90;
+
+        var colorized = arrow.GetComponent<Colorized>();
+        colorized.ColorIndex = m_ColorIndex;
+
+		var hitbox = arrow.GetComponentInChildren<Hitbox>();
+		hitbox.ColorIndex = m_ColorIndex;
+
+		// Calculate the angle and rotate the arrow
+		float angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) + -90;
         arrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         rb.velocity = direction * arrowSpeed;

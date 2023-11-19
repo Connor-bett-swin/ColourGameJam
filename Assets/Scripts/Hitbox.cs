@@ -20,7 +20,7 @@ public class Hitbox : MonoBehaviour
 
 		var boss = collision.GetComponentInParent<BossController>();
 
-		if (boss != null && Colored && boss.ColorIndex == ColorIndex)
+		if (boss != null && Colored && boss.ColorIndex == GetColorIndex())
         {
 			if (Grow)
 			{
@@ -31,5 +31,17 @@ public class Hitbox : MonoBehaviour
         }
 
         health.Hurt(Damage);
+	}
+
+	private int GetColorIndex()
+	{
+		var colorized = GetComponentInParent<Colorized>();
+
+		if (colorized != null)
+		{
+			return colorized.ColorIndex;
+		}
+
+		return ColorIndex;
 	}
 }

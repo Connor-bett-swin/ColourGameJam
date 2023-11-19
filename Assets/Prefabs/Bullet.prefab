@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 6979371211096616888}
   - component: {fileID: 991902829584603594}
   - component: {fileID: 8959786557217723386}
+  - component: {fileID: 4864031044297393282}
   m_Layer: 0
-  m_Name: SniperArrow
+  m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 48bed073cd06c7e46ac399c8aa5289ae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 72e1a68436bdce347a99735c4ffe965b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -113,6 +114,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4864031044297393282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3123526685660525841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebc898b39cde45d4686a78289080d331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Sprites:
+  - {fileID: 991902829584603594}
+  m_Colors: {fileID: 11400000, guid: e48cee524cae42a46bcf9736c67e4ff9, type: 2}
+  ColorIndex: 0
 --- !u!1 &7086711429849207771
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,6 +221,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 4
-  Grow: 0
-  Colored: 0
+  Grow: 1
+  Colored: 1
   ColorIndex: 0

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1319834639558433379}
   - component: {fileID: 1910067666137379117}
   m_Layer: 0
-  m_Name: SniperShot
+  m_Name: ChargedShot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f65514148b0824ca0b6a782ed79df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Colors: {fileID: 11400000, guid: e48cee524cae42a46bcf9736c67e4ff9, type: 2}
   SniperArrow: {fileID: 3123526685660525841, guid: 6282ffc181d761a4aa6d48106b838b5a,
     type: 3}
   warningLine: {fileID: 6857880613094987574}
@@ -396,6 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d07d543d4fc6ef441a13582ff70d2ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Colors: {fileID: 11400000, guid: e48cee524cae42a46bcf9736c67e4ff9, type: 2}
   SniperArrow: {fileID: 3123526685660525841, guid: 6282ffc181d761a4aa6d48106b838b5a,
     type: 3}
   shootPoint: {fileID: 1606753483787899571}
