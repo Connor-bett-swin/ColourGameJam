@@ -27,19 +27,19 @@ public class BasicShot : MonoBehaviour
 #if UNITY_EDITOR
 		if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-			Fire();
+			Fire(0);
         }
 #endif
     }
 
-    public void Fire()
+    public void Fire(int colorIndex)
     {
-		var colorIndex = -1;
+		//var colorIndex = -1;
 
-		if (Random.value > 0.2f)
-		{
-			colorIndex = Random.Range(0, m_Colors.Length);
-		}
+		//if (Random.value > 0.2f)
+		//{
+		//	colorIndex = Random.Range(0, m_Colors.Length);
+		//}
 
 		BasicShotSFX.Play();
         Vector2 targetPosition = player.transform.position;

@@ -43,6 +43,6 @@ public class BombThrowAttack : MonoBehaviour
 		var bomb = Instantiate(m_BombPrefab, transform.position, Quaternion.identity)
 			.GetComponent<Rigidbody2D>();
 
-		bomb.velocity = CalculateInitialVelocity(transform.position, m_Player.transform.position, m_MinThrowVelocity, m_MaxThrowVelocity);
+		bomb.velocity = Quaternion.Euler(0, 0, Random.Range(-3.0f, 3.0f)) * CalculateInitialVelocity(transform.position, m_Player.transform.position, m_MinThrowVelocity, m_MaxThrowVelocity);
 	}
 }

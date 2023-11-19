@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Repeat : DecoratorBase
 {
+	public override string IconPath { get; } = $"{PACKAGE_ROOT}/Repeat.png";
+
 	public int Times;
 
 	private int m_Count;

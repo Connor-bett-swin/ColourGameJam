@@ -65,7 +65,7 @@ public class Hero : MonoBehaviour
 	{
 		m_BehaviorTree = new BehaviorTreeBuilder(gameObject)
 			.Sequence()
-				.WaitTime(Random.Range(1.5f, 2.5f))
+				.WaitTime(Random.Range(2.5f, 3.0f))
 				.Selector()
 					.Sequence()
 						.RandomChance(1, 2)
@@ -209,9 +209,12 @@ public class Hero : MonoBehaviour
 
 	private void OnBombAttack()
 	{
-		LeanTween.delayedCall(0.5f, m_BombThrowAttack.Activate);
 		m_Character.LookAt(m_Player.transform.position);
 		m_Animator.SetTrigger("ThrowBomb");
+
+		var sequence = LeanTween.sequence();
+		sequence.append(0.4f);
+		sequence.append(LeanTween.delayedCall(0.2f, m_BombThrowAttack.Activate).setRepeat(Random.Range(1, 3)));
 	}
 
 	private void OnBasicShot()
@@ -219,9 +222,17 @@ public class Hero : MonoBehaviour
 		m_Animator.SetBool("Aiming", true);
 		m_Arm.enabled = true;
 
-		LeanTween.delayedCall(0.1f, () =>
+		var colorIndex = -1;
+
+		if (Random.value > 0.2f)
 		{
-			m_BasicShot.Fire();
+			colorIndex = Random.Range(0, 3);
+		}
+
+		var sequence = LeanTween.sequence();
+		sequence.append(LeanTween.delayedCall(0.3f, () => m_BasicShot.Fire(colorIndex)).setRepeat(Random.Range(1, 4)));
+		sequence.append(() =>
+		{
 			m_Animator.SetBool("Aiming", false);
 			m_Arm.enabled = false;
 		});
