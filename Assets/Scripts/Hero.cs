@@ -29,7 +29,7 @@ public class Hero : MonoBehaviour
 	private Seeker m_Seeker;
 	private Character m_Character;
 	private List<Vector2> m_Path = new List<Vector2>();
-	private Vector2 m_Target;
+	//private Vector2 m_Target;
 	private float m_JumpCooldownTimer;
 
 	private void Awake()
@@ -95,7 +95,6 @@ public class Hero : MonoBehaviour
 	{
 		if (m_Path.Count == 0)
 		{
-			m_Target = GetTarget();
 			return;
 		}
 
@@ -136,7 +135,8 @@ public class Hero : MonoBehaviour
 
 	private void UpdatePath()
 	{
-		m_Seeker.StartPath(transform.position, m_Target); 
+		var target = GetTarget();
+		m_Seeker.StartPath(transform.position, target); 
 	}
 
 	private void OnLaserAttack()
