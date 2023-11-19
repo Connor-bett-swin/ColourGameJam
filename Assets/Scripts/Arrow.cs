@@ -12,6 +12,9 @@ public class Arrow : MonoBehaviour
 	private Collider2D m_Hitbox;
     private Animator m_Animator;
 
+	[SerializeField]
+	private GameObject m_ExplosionPrefab;
+
 	private void Awake()
 	{
 		m_Animator = GetComponent<Animator>();
@@ -19,6 +22,7 @@ public class Arrow : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
+		Explode();
 		m_Animator.SetTrigger("Hit");
 
 		m_Hitbox.enabled = false;
@@ -26,5 +30,10 @@ public class Arrow : MonoBehaviour
 		LeanTween.alpha(gameObject, 0, m_FadeDuration)
 			.setDelay(m_FadeDelay)
 			.setDestroyOnComplete(true);
+	}
+	private void Explode()
+	{
+		Instantiate(m_ExplosionPrefab, transform.position, Quaternion.identity);
+		Destroy(gameObject);
 	}
 }
