@@ -15,6 +15,7 @@ public class BombThrowAttack : MonoBehaviour
 
 	private GameObject m_Player;
 
+
 	private void Start()
 	{
 		m_Player = GameObject.FindGameObjectWithTag("Player");

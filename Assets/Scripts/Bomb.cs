@@ -13,6 +13,8 @@ public class Bomb : MonoBehaviour
 	private Collider2D m_Collider;
 	[SerializeField]
 	private GameObject m_ExplosionPrefab;
+    public AudioSource ThrowSfx;
+	
 
 	private void Start()
 	{
@@ -20,6 +22,7 @@ public class Bomb : MonoBehaviour
 		//LeanTween.delayedCall(m_FuseTime / 3, () => m_Collider.excludeLayers = 0);
 
 		LeanTween.delayedCall(m_FuseTime, Explode);
+		ThrowSfx.Play();
 	}
 
 	private void Explode()
@@ -27,5 +30,7 @@ public class Bomb : MonoBehaviour
 		Exploded?.Invoke();
 		Instantiate(m_ExplosionPrefab, transform.position, Quaternion.identity);
 		Destroy(gameObject);
+		
+
 	}
 }
