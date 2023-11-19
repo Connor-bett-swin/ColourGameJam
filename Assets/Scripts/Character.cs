@@ -29,6 +29,8 @@ public class Character : MonoBehaviour
 	private float m_AirTime;
 	private bool m_Grounded;
     private float m_TargetMoveVelocity;
+    public AudioSource JumpSfx;
+
 
 	public void Move(float direction)
 	{
@@ -66,6 +68,7 @@ public class Character : MonoBehaviour
 		if (m_Animator != null)
 		{
 			m_Animator.SetTrigger("Jump");
+			JumpSfx.Play();
 		}
 	}
 
