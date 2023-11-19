@@ -5,23 +5,28 @@ using UnityEngine;
 
 public static class BehaviorTreeBuilderExtensions
 {
-    public static BehaviorTreeBuilder LaserAttackAction(this BehaviorTreeBuilder builder, string name = "Laser Attack")
+    public static BehaviorTreeBuilder CastLaserAction(this BehaviorTreeBuilder builder, string name = "Cast Laser")
     {
-        return builder.AddNode(new LaserAttackAction { Name = name });
+        return builder.AddNode(new CastLaserAction { Name = name });
     }
 
-	public static BehaviorTreeBuilder ArrowAttackAction(this BehaviorTreeBuilder builder, string name = "Laser Attack")
+	public static BehaviorTreeBuilder CastFireballAction(this BehaviorTreeBuilder builder, string name = "Cast Fireball")
 	{
-		return builder.AddNode(new ArrowAttackAction { Name = name });
+		return builder.AddNode(new CastFireballAction { Name = name });
 	}
 
-	public static BehaviorTreeBuilder ThrowBombAction(this BehaviorTreeBuilder builder, string name = "Laser Attack")
+	public static BehaviorTreeBuilder ThrowBombAction(this BehaviorTreeBuilder builder, string name = "Throw Bomb")
 	{
 		return builder.AddNode(new ThrowBombAction { Name = name });
 	}
 
-	public static BehaviorTreeBuilder FireAction(this BehaviorTreeBuilder builder, string name = "Laser Attack")
+	public static BehaviorTreeBuilder BasicShotAction(this BehaviorTreeBuilder builder, string name = "Basic Shot")
 	{
-		return builder.AddNode(new ArrowAttackAction { Name = name });
+		return builder.AddNode(new BasicShotAction { Name = name });
+	}
+
+	public static BehaviorTreeBuilder ChargedShotAction(this BehaviorTreeBuilder builder, string name = "Charged Shot")
+	{
+		return builder.AddNode(new ChargedShotAction { Name = name });
 	}
 }

@@ -17,9 +17,11 @@ public class Hero : MonoBehaviour
 	[SerializeField]
 	private float m_DropAngle = 60;
 	[SerializeField]
+	private Collider2D m_Collider;
+	[SerializeField]
 	private Animator m_Animator;
 	[SerializeField]
-	private Collider2D m_Collider;
+	private SpriteRenderer m_Arm;
 	[SerializeField]
 	private BombThrowAttack m_BombThrowAttack;
 	[SerializeField]
@@ -41,8 +43,9 @@ public class Hero : MonoBehaviour
 				.WaitTime(Random.Range(3, 6))
 				.SelectorRandom()
 					.ThrowBombAction()
-					.LaserAttackAction()
-					.ArrowAttackAction()
+					.CastLaserAction()
+					.CastFireballAction()
+					.ChargedShotAction()
 			.End()
 			.Build();
 
@@ -91,6 +94,9 @@ public class Hero : MonoBehaviour
 		{
 			m_JumpCooldownTimer -= Time.deltaTime;
 		}
+
+		var direction = ((Vector2)m_Player.transform.position - (Vector2)m_Character.transform.position).normalized;
+		m_Arm.transform.localEulerAngles = new Vector3(0, 0, Vector2.SignedAngle(Vector2.right, direction));
 	}
 
 	private void UpdateMovement()
@@ -165,6 +171,15 @@ public class Hero : MonoBehaviour
 		LeanTween.delayedCall(0.5f, m_BombThrowAttack.Activate);
 		m_Character.LookAt(m_Player.transform.position);
 		m_Animator.SetTrigger("ThrowBomb");
+	}
+
+	private void OnBasicShot()
+	{
+	}
+
+	private void OnChargedShot()
+	{
+
 	}
 
 	private void OnDrawGizmos()

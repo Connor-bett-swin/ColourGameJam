@@ -4,11 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserAttackAction : ActionBase
+public class ChargedShotAction : ActionBase
 {
 	protected override TaskStatus OnUpdate()
 	{
-		Owner.SendMessage("OnLaserAttack");
+		Owner.SendMessage("OnChargedShot");
 
 		return TaskStatus.Success;
 	}
