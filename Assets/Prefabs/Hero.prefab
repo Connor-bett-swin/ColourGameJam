@@ -261,6 +261,7 @@ MonoBehaviour:
   m_Collider: {fileID: 1128151018275122450}
   m_Animator: {fileID: 8736863371641702992}
   m_Sprite: {fileID: 5763833513015010177}
+  JumpSfx: {fileID: 0}
 --- !u!114 &3681039359021667247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,6 +281,7 @@ MonoBehaviour:
   m_Collider: {fileID: 1128151018275122450}
   m_ArrowRainSequence: {fileID: 0}
   m_LaserGridSequence: {fileID: 0}
+  m_BombThrowAttack: {fileID: 6036213078297510575}
 --- !u!114 &6036213078297510575
 MonoBehaviour:
   m_ObjectHideFlags: 0

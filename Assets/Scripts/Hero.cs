@@ -21,6 +21,8 @@ public class Hero : MonoBehaviour
 	[SerializeField]
 	private Collider2D m_Collider;
 	[SerializeField]
+	private BombThrowAttack m_BombThrowAttack;
+	[SerializeField]
 	private ArrowRainSequence m_ArrowRainSequence;
 	[SerializeField]
 	private LaserGridSequence m_LaserGridSequence;
@@ -93,6 +95,13 @@ public class Hero : MonoBehaviour
 
 	private void UpdateMovement()
 	{
+		if (!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Jump") &&
+			!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") &&
+			!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Run"))
+		{
+			return;
+		}
+
 		if (m_Path.Count == 0)
 		{
 			return;
@@ -141,12 +150,20 @@ public class Hero : MonoBehaviour
 
 	private void OnLaserAttack()
 	{
-		m_LaserGridSequence.Activate();
+		LeanTween.delayedCall(0.5f, m_LaserGridSequence.Activate);
+		m_Animator.SetTrigger("LaserSpell");
 	}
 
 	private void OnArrowAttack()
 	{
-		m_ArrowRainSequence.Activate();
+		LeanTween.delayedCall(0.5f, m_ArrowRainSequence.Activate);
+		m_Animator.SetTrigger("FireballSpell");
+	}
+
+	private void OnBombAttack()
+	{
+		LeanTween.delayedCall(0.5f, m_BombThrowAttack.Activate);
+		m_Animator.SetTrigger("ThrowBomb");
 	}
 
 	private void OnDrawGizmos()
