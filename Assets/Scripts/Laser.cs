@@ -9,13 +9,9 @@ public class Laser : MonoBehaviour
 	[SerializeField]
 	private Material[] m_Materials;
 	[SerializeField]
-	private GameObject m_LeftEmitter;
+	private SpriteRenderer m_LeftEmitter;
 	[SerializeField]
-	private GameObject m_RightEmitter;
-	[SerializeField]
-	private SpriteRenderer m_LeftEmitterGlass;
-	[SerializeField]
-	private SpriteRenderer m_RightEmitterGlass;
+	private SpriteRenderer m_RightEmitter;
 	[SerializeField]
 	private LineRenderer m_Beam;
 	[SerializeField]
@@ -46,8 +42,8 @@ public class Laser : MonoBehaviour
 		m_LeftEmitter.transform.localPosition = new Vector3(-Separation, 0, 0);
 		m_RightEmitter.transform.localPosition = new Vector3(Separation, 0, 0);
 
-		m_LeftEmitterGlass.color = m_Colors[ColorIndex];
-		m_RightEmitterGlass.color = m_Colors[ColorIndex];
+		m_LeftEmitter.color = m_Colors[ColorIndex];
+		m_RightEmitter.color = m_Colors[ColorIndex];
 
 		m_Hitbox.ColorIndex = ColorIndex;
 
