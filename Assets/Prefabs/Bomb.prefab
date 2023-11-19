@@ -180,7 +180,7 @@ MonoBehaviour:
         m_CallState: 2
   m_FuseTime: 3
   m_Collider: {fileID: 186517450827480661}
-  m_ExplosionPrefab: {fileID: 117956531199924483, guid: 1336f9779c03243419672a95d5982493,
+  m_ExplosionPrefab: {fileID: 117956531199924483, guid: 8057dff9973d49a4da0be528b92257e4,
     type: 3}
   ThrowSfx: {fileID: -5111090772382012987}
 --- !u!114 &5964226432117917374
