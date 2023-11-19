@@ -12,9 +12,10 @@ public class Character : MonoBehaviour
     public float CoyoteTime = 0.3f;
     public LayerMask GroundMask;
 
+	public Vector2 Feet => m_Collider.bounds.center - new Vector3(0, m_Collider.bounds.extents.y);
     public Vector2 Velocity => m_Rigidbody.velocity;
     public bool Grounded => m_Grounded;
-	public Vector2 Feet => m_Collider.bounds.center - new Vector3(0, m_Collider.bounds.extents.y);
+	public bool FacingRight => m_Sprite.flipX;
 
 	[SerializeField]
     private Rigidbody2D m_Rigidbody;

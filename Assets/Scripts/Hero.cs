@@ -42,9 +42,9 @@ public class Hero : MonoBehaviour
 			.Sequence()
 				.WaitTime(Random.Range(3, 6))
 				.SelectorRandom()
-					.ThrowBombAction()
-					.CastLaserAction()
-					.CastFireballAction()
+					//.ThrowBombAction()
+					//.CastLaserAction()
+					//.CastFireballAction()
 					.ChargedShotAction()
 			.End()
 			.Build();
@@ -92,6 +92,11 @@ public class Hero : MonoBehaviour
 
 		UpdateMovement();
 
+		if (m_Animator.GetBool("Aiming"))
+		{
+			m_Character.LookAt(m_Player.transform.position);
+		}
+
 		if (m_JumpCooldownTimer > 0)
 		{
 			m_JumpCooldownTimer -= Time.deltaTime;
@@ -105,6 +110,8 @@ public class Hero : MonoBehaviour
 
 		m_Arm.transform.localEulerAngles = new Vector3(0, 0, angle);
 		m_Arm.flipY = angle < -90 || angle > 90;
+		
+		m_Arm.transform.localPosition = new Vector3(m_Character.FacingRight ? 0.1f : -0.1f, 0, 0);
 	}
 
 	private void UpdateMovement()
@@ -188,7 +195,14 @@ public class Hero : MonoBehaviour
 
 	private void OnChargedShot()
 	{
+		m_Animator.SetBool("Aiming", true);
+		m_Arm.enabled = true;
 
+		LeanTween.delayedCall(1, () => 
+		{
+			m_Animator.SetBool("Aiming", false);
+			m_Arm.enabled = false;
+		});
 	}
 
 	private void OnDrawGizmos()
