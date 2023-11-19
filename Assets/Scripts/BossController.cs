@@ -25,6 +25,8 @@ public class BossController : MonoBehaviour
 	[SerializeField]
 	private float m_SquishFromVelocity = 0.1f;
 	[SerializeField]
+	private float m_WinSize = 200;
+	[SerializeField]
 	private GameObject m_Sprites;
 	[SerializeField]
 	private SpriteRenderer[] m_ColorizedSprites;
@@ -69,6 +71,11 @@ public class BossController : MonoBehaviour
 
 	private void Update()
 	{
+		if (m_Health.Value > m_WinSize)
+		{
+			m_Health.InvertDamage = true;
+		}
+
 		transform.localScale = Vector3.one * m_Health.Value / m_Health.InitialValue;
 
 		var moveInput = m_MoveAction.ReadValue<Vector2>();
