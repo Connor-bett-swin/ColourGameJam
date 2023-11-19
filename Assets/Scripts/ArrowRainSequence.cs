@@ -42,7 +42,7 @@ public class ArrowRainSequence : MonoBehaviour
 
 	private float GetGapWidth()
 	{
-		return Mathf.Max(m_MinGapWidth, m_PlayerCollider.bounds.size.x);
+		return Mathf.Max(m_MinGapWidth, m_PlayerCollider.bounds.size.x + 5);
 	}
 
 	public void Activate()
@@ -50,6 +50,8 @@ public class ArrowRainSequence : MonoBehaviour
 		AudioWhole.Play();
 
 		var gapX = Random.Range(0, m_Width - GetGapWidth());
+
+		Debug.Log(GetGapWidth());
 
 		var sequence = LeanTween.sequence();
 		sequence.append(() => SpawnSilhouetteFireballs(gapX));
