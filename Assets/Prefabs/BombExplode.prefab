@@ -5153,7 +5153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ca0181143153dc44a6738ebe02bddeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 5
+  Damage: 10
+  Growth: 0
   Colored: 0
   ColorIndex: 0
 --- !u!1 &9019496631018697636
