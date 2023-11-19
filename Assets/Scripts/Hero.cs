@@ -46,6 +46,21 @@ public class Hero : MonoBehaviour
 			!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Run");
 	}
 
+	public void Die()
+	{
+		Destroy(this);
+		Destroy(m_Character);
+		Destroy(m_Animator);
+		Destroy(GetComponent<Rigidbody2D>());
+
+		var sprite = GetComponent<SpriteRenderer>();
+		sprite.color = Color.black;
+
+		m_Arm.enabled = false;
+
+		LeanTween.move(gameObject, m_Player.transform.position, 1).setEaseInQuad();
+	}
+
 	private void Awake()
 	{
 		m_BehaviorTree = new BehaviorTreeBuilder(gameObject)

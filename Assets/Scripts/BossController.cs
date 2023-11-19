@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class BossController : MonoBehaviour
 {
@@ -24,6 +25,10 @@ public class BossController : MonoBehaviour
 	private float m_SquishIntensity = 0.2f;
 	[SerializeField]
 	private float m_SquishFromVelocity = 0.1f;
+	[SerializeField]
+	private float m_InvertDamageSize = 200;
+	[SerializeField]
+	private float m_WinSize = 300;
 	[SerializeField]
 	private GameObject m_Sprites;
 	[SerializeField]
@@ -67,8 +72,40 @@ public class BossController : MonoBehaviour
 		m_Grounded = m_Rigidbody.GetContacts(contactFilter, m_Contacts) > 0;
 	}
 
+	private void WinGame()
+	{
+		var hero = FindObjectOfType<Hero>();
+
+		if (hero != null)
+		{
+			hero.Die();
+		}
+
+		Destroy(this);
+		Destroy(m_Rigidbody);
+
+		LeanTween.delayedCall(6, () => SceneManager.LoadScene("GameWin"));
+	}
+
 	private void Update()
 	{
+#if UNITY_EDITOR
+		if (Keyboard.current.f1Key.wasPressedThisFrame)
+		{
+			WinGame();
+		}
+#endif
+
+		if (m_Health.Value > m_InvertDamageSize)
+		{
+			m_Health.InvertDamage = true;
+		}
+
+		if (m_Health.Value > m_WinSize)
+		{
+			WinGame();
+		}
+
 		transform.localScale = Vector3.one * m_Health.Value / m_Health.InitialValue;
 
 		var moveInput = m_MoveAction.ReadValue<Vector2>();

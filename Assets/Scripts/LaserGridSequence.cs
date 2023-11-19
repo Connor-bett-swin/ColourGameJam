@@ -22,10 +22,12 @@ public class LaserGridSequence : MonoBehaviour
 
 	private void Update()
 	{
+#if UNITY_EDITOR
 		if (Keyboard.current.digit2Key.wasPressedThisFrame)
 		{
 			Activate();
 		}
+#endif
 	}
 
 	public void Activate()

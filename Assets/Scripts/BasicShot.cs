@@ -24,10 +24,12 @@ public class BasicShot : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha4))
+#if UNITY_EDITOR
+		if (Input.GetKeyDown(KeyCode.Alpha4))
         {
 			Fire();
         }
+#endif
     }
 
     public void Fire()
