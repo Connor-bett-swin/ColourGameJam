@@ -204,6 +204,9 @@ MonoBehaviour:
   MinValue: 0
   MaxValue: 1000
   InitialValue: 100
+  HurtSfx: {fileID: 0}
+  HealSfx: {fileID: 0}
+  InvertDamage: 0
 --- !u!114 &7935907700804894851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,6 +231,8 @@ MonoBehaviour:
   m_SquishDamping: 0.1
   m_SquishIntensity: 0.2
   m_SquishFromVelocity: 0.1
+  m_InvertDamageSize: 300
+  m_WinSize: 500
   m_Sprites: {fileID: 2183049105599315566}
   m_ColorizedSprites:
   - {fileID: 7548924002914341921}
