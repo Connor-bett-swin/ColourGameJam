@@ -30,6 +30,8 @@ public class BossController : MonoBehaviour
 	[SerializeField]
 	private float m_WinSize = 300;
 	[SerializeField]
+	private AudioSource m_WinSound;
+	[SerializeField]
 	private GameObject m_Sprites;
 	[SerializeField]
 	private SpriteRenderer[] m_ColorizedSprites;
@@ -83,6 +85,8 @@ public class BossController : MonoBehaviour
 
 		Destroy(this);
 		Destroy(m_Rigidbody);
+
+		m_WinSound.Play();
 
 		LeanTween.delayedCall(6, () => SceneManager.LoadScene("GameWin"));
 	}
