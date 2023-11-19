@@ -88,15 +88,23 @@ public class Hero : MonoBehaviour
 	{
 		m_BehaviorTree.Tick();
 
+		UpdateArm();
+
 		UpdateMovement();
 
 		if (m_JumpCooldownTimer > 0)
 		{
 			m_JumpCooldownTimer -= Time.deltaTime;
 		}
+	}
 
+	private void UpdateArm()
+	{
 		var direction = ((Vector2)m_Player.transform.position - (Vector2)m_Character.transform.position).normalized;
-		m_Arm.transform.localEulerAngles = new Vector3(0, 0, Vector2.SignedAngle(Vector2.right, direction));
+		var angle = Vector2.SignedAngle(Vector2.right, direction);
+
+		m_Arm.transform.localEulerAngles = new Vector3(0, 0, angle);
+		m_Arm.flipY = angle < -90 || angle > 90;
 	}
 
 	private void UpdateMovement()
@@ -122,16 +130,16 @@ public class Hero : MonoBehaviour
 
 		if (m_Character.Grounded)
 		{
-			m_Character.Move(nextNode.x < m_Character.transform.position.x ? -1 : 1);
+			m_Character.Move(nextNode.x < transform.position.x ? -1 : 1);
 		}
 		else
 		{
-			m_Character.Move(nextNode.x - m_Character.transform.position.x);
+			m_Character.Move(nextNode.x - transform.position.x);
 		}
 
-		var direction = (nextNode - (Vector2)m_Character.transform.position).normalized;
+		var direction = (nextNode - (Vector2)transform.position).normalized;
 
-		if (Vector2.Distance(nextNode, m_Character.transform.position) < 1.5f)
+		if (Vector2.Distance(nextNode, transform.position) < 1.5f)
 		{
 			return;
 		}
@@ -175,6 +183,7 @@ public class Hero : MonoBehaviour
 
 	private void OnBasicShot()
 	{
+
 	}
 
 	private void OnChargedShot()
