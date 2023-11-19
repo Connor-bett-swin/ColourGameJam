@@ -29,4 +29,9 @@ public static class BehaviorTreeBuilderExtensions
 	{
 		return builder.AddNode(new ChargedShotAction { Name = name });
 	}
+
+	public static BehaviorTreeBuilder Repeat(this BehaviorTreeBuilder builder, int times, string name = "Repeat")
+	{
+		return builder.AddNode(new Repeat { Name = name, Times = times });
+	}
 }
