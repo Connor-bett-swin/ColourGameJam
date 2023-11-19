@@ -28,18 +28,20 @@ public class ArrowShooter : MonoBehaviour
 	{
         if (isShooting)
         {
-        
-
             StartCoroutine(ShootAtPlayer());
-
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3) && !isShooting)
         {
-            Charge_Sfx.Play();
-            isShooting = true;
-            StartCoroutine(ShootArrow());
-        }
+            Fire();
+		}
+	}
+
+    public void Fire()
+    {
+		Charge_Sfx.Play();
+		isShooting = true;
+		StartCoroutine(ShootArrow());
 	}
 
     private IEnumerator ShootAtPlayer()

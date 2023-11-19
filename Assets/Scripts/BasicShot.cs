@@ -24,11 +24,11 @@ public class BasicShot : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            ShootArrow();
+			Fire();
         }
     }
 
-    private void ShootArrow()
+    public void Fire()
     {
         BasicShotSFX.Play();
         Vector2 targetPosition = player.transform.position;

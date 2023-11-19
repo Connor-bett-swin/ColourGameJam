@@ -28,12 +28,15 @@ public class Hero : MonoBehaviour
 	private ArrowRainSequence m_ArrowRainSequence;
 	[SerializeField]
 	private LaserGridSequence m_LaserGridSequence;
+	[SerializeField]
+	private ArrowShooter m_ChargedShot;
+	[SerializeField]
+	private BasicShot m_BasicShot;
 	private GameObject m_Player;
 	private Health m_PlayerHealth;
 	private Seeker m_Seeker;
 	private Character m_Character;
 	private List<Vector2> m_Path = new List<Vector2>();
-	//private Vector2 m_Target;
 	private float m_JumpCooldownTimer;
 
 	private void Awake()
@@ -46,6 +49,7 @@ public class Hero : MonoBehaviour
 					//.CastLaserAction()
 					//.CastFireballAction()
 					.ChargedShotAction()
+					.BasicShotAction()
 			.End()
 			.Build();
 
@@ -88,14 +92,9 @@ public class Hero : MonoBehaviour
 	{
 		m_BehaviorTree.Tick();
 
-		UpdateArm();
+		UpdateAim();
 
 		UpdateMovement();
-
-		if (m_Animator.GetBool("Aiming"))
-		{
-			m_Character.LookAt(m_Player.transform.position);
-		}
 
 		if (m_JumpCooldownTimer > 0)
 		{
@@ -103,15 +102,21 @@ public class Hero : MonoBehaviour
 		}
 	}
 
-	private void UpdateArm()
+	private void UpdateAim()
 	{
+		if (!m_Arm.enabled)
+		{
+			return;
+		}
+
+		m_Character.LookAt(m_Player.transform.position);
+
 		var direction = ((Vector2)m_Player.transform.position - (Vector2)m_Character.transform.position).normalized;
 		var angle = Vector2.SignedAngle(Vector2.right, direction);
 
 		m_Arm.transform.localEulerAngles = new Vector3(0, 0, angle);
-		m_Arm.flipY = angle < -90 || angle > 90;
-		
 		m_Arm.transform.localPosition = new Vector3(m_Character.FacingRight ? 0.1f : -0.1f, 0, 0);
+		m_Arm.flipY = angle < -90 || angle > 90;
 	}
 
 	private void UpdateMovement()
@@ -190,13 +195,23 @@ public class Hero : MonoBehaviour
 
 	private void OnBasicShot()
 	{
+		m_Animator.SetBool("Aiming", true);
+		m_Arm.enabled = true;
 
+		LeanTween.delayedCall(0.1f, () =>
+		{
+			m_BasicShot.Fire();
+			m_Animator.SetBool("Aiming", false);
+			m_Arm.enabled = false;
+		});
 	}
 
 	private void OnChargedShot()
 	{
 		m_Animator.SetBool("Aiming", true);
 		m_Arm.enabled = true;
+
+		m_ChargedShot.Fire();
 
 		LeanTween.delayedCall(1, () => 
 		{
