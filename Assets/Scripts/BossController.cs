@@ -72,8 +72,30 @@ public class BossController : MonoBehaviour
 		m_Grounded = m_Rigidbody.GetContacts(contactFilter, m_Contacts) > 0;
 	}
 
+	private void WinGame()
+	{
+		var hero = FindObjectOfType<Hero>();
+
+		if (hero != null)
+		{
+			hero.Die();
+		}
+
+		Destroy(this);
+		Destroy(m_Rigidbody);
+
+		LeanTween.delayedCall(6, () => SceneManager.LoadScene("GameWin"));
+	}
+
 	private void Update()
 	{
+#if UNITY_EDITOR
+		if (Keyboard.current.f1Key.wasPressedThisFrame)
+		{
+			WinGame();
+		}
+#endif
+
 		if (m_Health.Value > m_InvertDamageSize)
 		{
 			m_Health.InvertDamage = true;
@@ -81,7 +103,7 @@ public class BossController : MonoBehaviour
 
 		if (m_Health.Value > m_WinSize)
 		{
-			SceneManager.LoadScene("GameWin");
+			WinGame();
 		}
 
 		transform.localScale = Vector3.one * m_Health.Value / m_Health.InitialValue;

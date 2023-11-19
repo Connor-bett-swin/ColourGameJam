@@ -34,10 +34,12 @@ public class ArrowRainSequence : MonoBehaviour
 
 	private void Update()
 	{
+#if UNITY_EDITOR
 		if (Keyboard.current.digit1Key.wasPressedThisFrame)
 		{
 			Activate();
 		}
+#endif
 	}
 
 	private float GetGapWidth()

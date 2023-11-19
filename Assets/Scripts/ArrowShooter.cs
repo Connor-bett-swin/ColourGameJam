@@ -32,11 +32,13 @@ public class ArrowShooter : MonoBehaviour
             StartCoroutine(ShootAtPlayer());
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3) && !isShooting)
+#if UNITY_EDITOR
+		if (Input.GetKeyDown(KeyCode.Alpha3) && !isShooting)
         {
             Fire();
 		}
-	}
+#endif
+    }
 
     public void Fire()
     {
