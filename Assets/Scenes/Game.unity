@@ -4114,7 +4114,7 @@ PrefabInstance:
     - target: {fileID: 8473385313138788734, guid: 8c259b85cd9f02b46b032554467c70c2,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4745,6 +4745,11 @@ PrefabInstance:
       propertyPath: m_LaserGridSequence
       value: 
       objectReference: {fileID: 1415456791}
+    - target: {fileID: 3977623893352338262, guid: 8186c30281d3afb4bbfe5926eb512c27,
+        type: 3}
+      propertyPath: warningDuration
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6525769785132930033, guid: 8186c30281d3afb4bbfe5926eb512c27,
         type: 3}
       propertyPath: m_Name
