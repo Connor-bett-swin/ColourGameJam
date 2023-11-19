@@ -106,6 +106,11 @@ public class Character : MonoBehaviour
 		Physics2D.IgnoreCollision(m_Collider, platformCollider, true);
     }
 
+	public void LookAt(Vector2 position)
+	{
+		m_Sprite.flipX = position.x < transform.position.x;
+	}
+
 	private void OnTriggerExit2D(Collider2D collision)
 	{
 		if (collision.gameObject.layer == LayerMask.NameToLayer("Platform"))

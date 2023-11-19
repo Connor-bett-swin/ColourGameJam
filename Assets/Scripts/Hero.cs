@@ -163,6 +163,7 @@ public class Hero : MonoBehaviour
 	private void OnBombAttack()
 	{
 		LeanTween.delayedCall(0.5f, m_BombThrowAttack.Activate);
+		m_Character.LookAt(m_Player.transform.position);
 		m_Animator.SetTrigger("ThrowBomb");
 	}
 
