@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hitbox : MonoBehaviour
 {
 	public float Damage = 10;
-	public bool Grow;
+	public float Growth;
 	public bool Colored;
 	public int ColorIndex;
 
@@ -22,9 +22,9 @@ public class Hitbox : MonoBehaviour
 
 		if (boss != null && Colored && boss.ColorIndex == GetColorIndex())
         {
-			if (Grow)
+			if (Growth > 0)
 			{
-				health.Heal(Damage);
+				health.Heal(Growth);
 			}
 
 			return;
