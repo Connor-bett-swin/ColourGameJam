@@ -13,7 +13,7 @@ public class Colorized : MonoBehaviour
 
 	private void Start()
 	{
-		var color = ColorIndex > 0 ? m_Colors[ColorIndex] : Color.white;
+		var color = ColorIndex >= 0 ? m_Colors[ColorIndex] : Color.white;
 
 		foreach (var sprite in m_Sprites)
 		{

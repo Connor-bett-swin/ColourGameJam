@@ -4161,15 +4161,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46450155bb2404b4c91b6f328a1a93c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FireArrowsDelay: 1.5
-  m_ArrowDensity: 0.5
-  m_ShadowArrowScale: 0.5
+  m_Colors: {fileID: 11400000, guid: e48cee524cae42a46bcf9736c67e4ff9, type: 2}
+  m_SpawnFireballsDelay: 1.5
+  m_FireballDensity: 0.5
   m_Width: 40
   m_Ground: 28
-  m_GapWidth: 5
-  m_ShadowArrowPrefab: {fileID: 7845174230646450611, guid: 5965c2f3c8d529a48aad3ef3ff489b04,
+  m_GapWidth: 10
+  m_SilhouetteFireballScale: 0.75
+  m_SilhouetteFireballPrefab: {fileID: 7845174230646450611, guid: 5965c2f3c8d529a48aad3ef3ff489b04,
     type: 3}
-  m_ArrowPrefab: {fileID: 7845174230646450611, guid: 86e7ffdddd89ae24b9fbd8e245844460,
+  m_FireballPrefab: {fileID: 7845174230646450611, guid: 86e7ffdddd89ae24b9fbd8e245844460,
     type: 3}
   AudioWhole: {fileID: 2112160247}
 --- !u!4 &2112160246

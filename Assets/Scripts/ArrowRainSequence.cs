@@ -5,13 +5,12 @@ using UnityEngine.InputSystem;
 
 public class ArrowRainSequence : MonoBehaviour
 {
-	
 	[SerializeField]
-	private float m_FireArrowsDelay = 1.5f;
+	private ColorScheme m_Colors;
 	[SerializeField]
-	private float m_ArrowDensity = 0.5f;
+	private float m_SpawnFireballsDelay = 1.5f;
 	[SerializeField]
-	private float m_ShadowArrowScale = 0.5f;
+	private float m_FireballDensity = 0.5f;
 	[SerializeField]
 	private float m_Width;
 	[SerializeField]
@@ -19,12 +18,12 @@ public class ArrowRainSequence : MonoBehaviour
 	[SerializeField]
 	private float m_GapWidth = 5;
 	[SerializeField]
-	private GameObject m_ShadowArrowPrefab;
+	private float m_SilhouetteFireballScale = 0.75f;
 	[SerializeField]
-	private GameObject m_ArrowPrefab;
+	private GameObject m_SilhouetteFireballPrefab;
+	[SerializeField]
+	private GameObject m_FireballPrefab;
     public AudioSource AudioWhole;
-
-	
 
 	private void Update()
 	{
@@ -40,46 +39,48 @@ public class ArrowRainSequence : MonoBehaviour
 		var gapX = Random.Range(0, m_Width - m_GapWidth);
 
 		var sequence = LeanTween.sequence();
-		sequence.append(() => FireShadowArrows(gapX));
-		sequence.append(m_FireArrowsDelay);
-		sequence.append(() => FireArrows(gapX));
+		sequence.append(() => SpawnSilhouetteFireballs(gapX));
+		sequence.append(m_SpawnFireballsDelay);
+		sequence.append(() => SpawnFireballs(gapX));
 	}
 
-	private void FireShadowArrows(float gapX)
+	private void SpawnSilhouetteFireballs(float gapX)
 	{
-		var shadowArrows = new GameObject("ShadowArrows");
-		shadowArrows.transform.position = new Vector3(transform.position.x, transform.position.y - m_Ground);
+		var silhouetteFireballs = new GameObject("ShadowFireballs");
+		silhouetteFireballs.transform.position = new Vector3(transform.position.x, transform.position.y - m_Ground);
 
-		for (float x = 0; x < m_Width; x += 1 / m_ArrowDensity)
+		for (float x = 0; x < m_Width; x += 1 / m_FireballDensity)
 		{
 			if (x > gapX && x < gapX + m_GapWidth)
 			{
 				continue;
 			}
 
-			var shadowArrow = Instantiate(m_ShadowArrowPrefab, shadowArrows.transform);
-			shadowArrow.transform.localPosition = new Vector3((x - m_Width / 2) * m_ShadowArrowScale, 0);
+			var silhouetteFireball = Instantiate(m_SilhouetteFireballPrefab, silhouetteFireballs.transform);
+			silhouetteFireball.transform.localPosition = new Vector3((x - m_Width / 2) * m_SilhouetteFireballScale, 0);
 		}
 
-		LeanTween.alpha(shadowArrows, 1, 0.25f).setFrom(0);
+		LeanTween.alpha(silhouetteFireballs, 1, 0.25f).setFrom(0);
 
-		LeanTween.moveY(shadowArrows, transform.position.y, m_FireArrowsDelay)
+		LeanTween.moveY(silhouetteFireballs, transform.position.y, m_SpawnFireballsDelay)
 			.setEaseOutQuad()
 			.setDestroyOnComplete(true);
 	}
 
-	private void FireArrows(float gapX)
+	private void SpawnFireballs(float gapX)
 	{
-		for (float x = 0; x < m_Width; x += 1 / m_ArrowDensity)
+		var colorIndex = Random.Range(0, m_Colors.Length);
+
+		for (float x = 0; x < m_Width; x += 1 / m_FireballDensity)
 		{
+			var fireball = Instantiate(m_FireballPrefab).GetComponent<Arrow>();
+			fireball.transform.position = new Vector3(transform.position.x + x - m_Width / 2 + Random.Range(-0.5f, 0.5f),
+				transform.position.y + Random.Range(-0.5f, 0.5f));
+			
 			if (x > gapX && x < gapX + m_GapWidth)
 			{
-				continue;
+				fireball.ColorIndex = colorIndex;
 			}
-
-			var arrow = Instantiate(m_ArrowPrefab);
-			arrow.transform.position = new Vector3(transform.position.x + x - m_Width / 2 + Random.Range(-0.5f, 0.5f),
-				transform.position.y + Random.Range(-0.5f, 0.5f));
 		}
 	}
 
@@ -89,7 +90,7 @@ public class ArrowRainSequence : MonoBehaviour
 		Gizmos.DrawLine(transform.position - new Vector3(m_Width / 2, 0), transform.position + new Vector3(m_Width / 2, 0));
 
 		Gizmos.color = Color.blue;
-		Gizmos.DrawLine(transform.position + new Vector3(m_ShadowArrowScale * -m_Width / 2, -m_Ground),
-			transform.position + new Vector3(m_ShadowArrowScale * m_Width / 2, -m_Ground));
+		Gizmos.DrawLine(transform.position + new Vector3(m_SilhouetteFireballScale * -m_Width / 2, -m_Ground),
+			transform.position + new Vector3(m_SilhouetteFireballScale * m_Width / 2, -m_Ground));
 	}
 }

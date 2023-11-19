@@ -52,11 +52,11 @@ public class Hero : MonoBehaviour
 			.Sequence()
 				.WaitTime(Random.Range(3, 6))
 				.SelectorRandom()
-					.ThrowBombAction()
-					.CastLaserAction()
+					//.ThrowBombAction()
+					//.CastLaserAction()
 					.CastFireballAction()
-					.ChargedShotAction()
-					.BasicShotAction()
+					//.ChargedShotAction()
+					//.BasicShotAction()
 			.End()
 			.Build();
 

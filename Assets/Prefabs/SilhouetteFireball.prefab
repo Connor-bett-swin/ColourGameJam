@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8784799739040987438}
   - component: {fileID: 1890121585211602924}
   m_Layer: 0
-  m_Name: ShadowArrow
+  m_Name: SilhouetteFireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
