@@ -5,6 +5,7 @@ using UnityEngine;
 public class Hitbox : MonoBehaviour
 {
 	public float Damage = 10;
+	public bool Grow;
 	public bool Colored;
 	public int ColorIndex;
 
@@ -19,8 +20,13 @@ public class Hitbox : MonoBehaviour
 
 		var boss = collision.GetComponentInParent<BossController>();
 
-        if (boss != null && Colored && boss.ColorIndex == ColorIndex)
+		if (boss != null && Colored && boss.ColorIndex == ColorIndex)
         {
+			if (Grow)
+			{
+				health.Heal(Damage);
+			}
+
 			return;
         }
 
